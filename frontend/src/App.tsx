@@ -34,7 +34,7 @@ import { literaryArchive } from './data/blogPost';
 import { HeroAvatarReveal } from './components/HeroAvatarReveal';
 import { Certificates } from './components/sections/Certificates';
 import { StickyTabs } from './components/ui/StickyTabs';
-import { AnimatedBorderButton } from './components/ui/AnimatedBorderButton';
+// import { AnimatedBorderButton } from './components/ui/AnimatedBorderButton';
 import { DottedSurface } from './components/ui/DottedSurface';
 
 gsap.registerPlugin(ScrollTrigger, Draggable);
