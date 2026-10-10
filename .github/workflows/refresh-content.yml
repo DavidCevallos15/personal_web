@@ -1,0 +1,21 @@
+name: Refresh content (YouTube)
+
+# Redeploy semanal en Vercel para que el prebuild traiga los últimos videos del canal.
+# Requiere el secret VERCEL_DEPLOY_HOOK (Vercel → Project → Settings → Git → Deploy Hooks).
+on:
+  schedule:
+    - cron: '17 13 * * 1' # lunes 08:17 Ecuador (UTC-5)
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "VERCEL_DEPLOY_HOOK no configurado; nada que hacer."; exit 0; fi
+          curl -fsS -X POST "$HOOK" > /dev/null && echo "Deploy disparado."

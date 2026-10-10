@@ -1,6 +1,6 @@
 /**
  * @author David Cevallos
- * @project DC.dev — personal_web v2.0.0
+ * @project DC.dev · personal_web v4
  * @integrity Propietario — Prohibida reproducción sin autorización escrita
  */
 
@@ -16,8 +16,8 @@ export function mountAuthorSignature(): void {
   }
 
   console.log('%c⚡ DC.dev', STYLES.title)
-  console.log('%cDavid Cevallos — IA Engineering & DevSecOps', STYLES.sub)
-  console.log('%cUTM · 9no Semestre · Manabí, Ecuador', STYLES.muted)
+  console.log('%cDavid Cevallos · Desarrollador Full-Stack', STYLES.sub)
+  console.log('%cIngeniería en TI (UTM) · Manabí, Ecuador', STYLES.muted)
   console.log('%c─────────────────────────────────────────────────────────', STYLES.muted)
   console.log('%c⚠ Este código es propiedad intelectual del autor.', STYLES.warn)
   console.log('%cReproducción parcial o total requiere autorización escrita.', STYLES.warn)
@@ -26,7 +26,7 @@ export function mountAuthorSignature(): void {
   // Metadata CSS invisible (Nivel 2 - inspeccionable en Computed Styles)
   const marker = document.createElement('meta')
   marker.name = 'author-signature'
-  marker.content = 'David Cevallos | DC.dev v2.0.0 | IA Engineering & DevSecOps'
+  marker.content = 'David Cevallos | DC.dev v4 | Full-Stack Developer'
   document.head.appendChild(marker)
 }
 
@@ -63,7 +63,7 @@ function triggerEasterEgg(): void {
       David Cevallos
     </p>
     <p style="font-size:14px;color:#8B8A9B;margin:0">
-      IA Engineering · DevSecOps · UTM · DC.dev v2.0.0
+      Full-Stack · DC.dev Studio · UTM
     </p>
     <p style="font-size:12px;color:#2A2A38;margin-top:48px">
       ESC para cerrar
