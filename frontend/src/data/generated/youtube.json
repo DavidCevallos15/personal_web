@@ -1,0 +1,19 @@
+{
+  "channel": {
+    "id": null,
+    "handle": "@DavidCevaZam",
+    "title": "David Cevallos",
+    "url": "https://www.youtube.com/@DavidCevaZam"
+  },
+  "videos": [
+    {
+      "id": "kToT4VRtZWw",
+      "title": "Ingeniería de Software Aplicada: Arquitectura del Backend",
+      "published": "",
+      "thumb": "https://i.ytimg.com/vi/kToT4VRtZWw/hqdefault.jpg",
+      "isShort": false,
+      "views": null
+    }
+  ],
+  "updatedAt": null
+}

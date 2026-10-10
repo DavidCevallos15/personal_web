@@ -1,15 +1,50 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="DC.dev — Portafolio profesional de David Cevallos. Especialista en IA Engineering, DevSecOps y arquitecturas de alto rendimiento." />
+    <title>David Cevallos · Desarrollador Full-Stack</title>
+    <meta name="description" content="Desarrollador full-stack en Ecuador. Sitios y sistemas web para negocios, profesionales e instituciones de salud. DC.dev Studio." />
     <meta name="author" content="David Cevallos" />
-    <title>DC.dev</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#0b0f19" />
+    <link rel="canonical" href="https://davidcevallos.vercel.app/" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_EC" />
+    <meta property="og:site_name" content="DC.dev" />
+    <meta property="og:title" content="David Cevallos · Desarrollador Full-Stack" />
+    <meta property="og:description" content="Sitios y sistemas web para negocios, profesionales e instituciones de salud." />
+    <meta property="og:url" content="https://davidcevallos.vercel.app/" />
+    <meta property="og:image" content="https://davidcevallos.vercel.app/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Tema antes del primer paint (sin flash). Hash en la CSP de vercel.json. -->
+    <script>try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+
+    <!-- LCP: avatar del hero -->
+    <link rel="preload" as="image" type="image/avif" href="/media/hero/hover_main-900.avif" imagesrcset="/media/hero/hover_main-600.avif 600w, /media/hero/hover_main-900.avif 900w" imagesizes="(max-width: 768px) 80vw, 560px" fetchpriority="high" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "David Cevallos",
+        "alternateName": "Jimmy David Cevallos Zambrano",
+        "jobTitle": "Desarrollador Full-Stack",
+        "url": "https://davidcevallos.vercel.app/",
+        "image": "https://davidcevallos.vercel.app/og.jpg",
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidad Técnica de Manabí" },
+        "address": { "@type": "PostalAddress", "addressRegion": "Manabí", "addressCountry": "EC" },
+        "sameAs": [
+          "https://github.com/DavidCevallos15",
+          "https://www.linkedin.com/in/jimmy-david-cevallos-zambrano-859876191/",
+          "https://www.youtube.com/@DavidCevaZam"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

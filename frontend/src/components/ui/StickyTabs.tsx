@@ -1,18 +1,18 @@
-import React, { Children, isValidElement } from 'react';
+import { Children, isValidElement, type FC, type ReactElement, type ReactNode } from 'react';
 import clsx from 'clsx';
 
 export interface StickyTabItemProps {
   title: string;
   id: string | number;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const StickyTabItem: React.FC<StickyTabItemProps> = () => {
+const StickyTabItem: FC<StickyTabItemProps> = () => {
   return null;
 };
 
 export interface StickyTabsProps {
-  children: React.ReactNode;
+  children: ReactNode;
   mainNavHeight?: string;
   rootClassName?: string;
   navSpacerClassName?: string;
@@ -24,17 +24,17 @@ export interface StickyTabsProps {
   contentLayoutClassName?: string;
 }
 
-export const StickyTabs: React.FC<StickyTabsProps> & { Item: React.FC<StickyTabItemProps> } = ({
+export const StickyTabs: FC<StickyTabsProps> & { Item: FC<StickyTabItemProps> } = ({
   children,
   mainNavHeight = '4em',
   rootClassName = "bg-obsidian text-text-primary",
-  navSpacerClassName = "border-b border-white/10 bg-obsidian",
-  sectionClassName = "bg-void",
-  stickyHeaderContainerClassName = "shadow-lg",
-  headerContentWrapperClassName = "border-b border-t border-white/10 bg-obsidian backdrop-blur-md bg-opacity-90",
-  headerContentLayoutClassName = "mx-auto max-w-[1440px] px-6 py-5",
-  titleClassName = "my-0 text-2xl font-medium leading-none md:text-3xl lg:text-4xl",
-  contentLayoutClassName = "w-full",
+  navSpacerClassName = "",
+  sectionClassName = "bg-obsidian",
+  stickyHeaderContainerClassName = "",
+  headerContentWrapperClassName = "border-y border-border bg-obsidian/85 backdrop-blur-md",
+  headerContentLayoutClassName = "container-lg py-4",
+  titleClassName = "my-0 font-display text-3xl uppercase leading-none tracking-wide md:text-5xl",
+  contentLayoutClassName = "w-full pt-10",
 }) => {
   const stickyTopValue = `calc(${mainNavHeight} - 1px)`;
   const navHeightStyle = { height: mainNavHeight };
@@ -42,14 +42,9 @@ export const StickyTabs: React.FC<StickyTabsProps> & { Item: React.FC<StickyTabI
 
   return (
     <div className={clsx("overflow-clip", rootClassName)}>
-      <div
-        className={clsx(
-          "sticky left-0 top-0 z-20 w-full",
-          navSpacerClassName
-        )}
-        style={navHeightStyle}
-        aria-hidden="true"
-      />
+      {navSpacerClassName && (
+        <div className={clsx("sticky left-0 top-0 z-20 w-full", navSpacerClassName)} style={navHeightStyle} aria-hidden="true" />
+      )}
 
       {Children.map(children, (child) => {
         if (!isValidElement(child) || child.type !== StickyTabItem) {
@@ -59,7 +54,7 @@ export const StickyTabs: React.FC<StickyTabsProps> & { Item: React.FC<StickyTabI
           return null;
         }
 
-        const itemElement = child as React.ReactElement<StickyTabItemProps>;
+        const itemElement = child as ReactElement<StickyTabItemProps>;
         const { title, id, children: itemContent } = itemElement.props;
 
         return (

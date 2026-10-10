@@ -1,0 +1,46 @@
+{
+  "$comment": "Certificados que NO están en el export de LinkedIn. `file` es relativo a public/certs/. El script sync-certs los fusiona con content/linkedin/Certifications.csv.",
+  "items": [
+    {
+      "id": "utm-ia-generativa-2024",
+      "title": "IA Generativa: herramientas para la creación y automatización de tareas",
+      "issuer": "Universidad Técnica de Manabí",
+      "date": "2024-12",
+      "file": "Jimmy David Cevallos Zambrano-signed-signed.pdf",
+      "kind": "course"
+    },
+    {
+      "id": "codings-django-react-2024",
+      "title": "Desarrollo Web con Django + React (60 h)",
+      "issuer": "Codings Academy",
+      "date": "2024-09",
+      "file": "certificado.pdf",
+      "kind": "course",
+      "replaces": "https://api.badgr.io/public/assertions/Lp_CqXk9SoiN6BTVFxSCQQ"
+    },
+    {
+      "id": "utm-convencion-2025",
+      "title": "IX Convención Científica Internacional UTM 2025 · VII Congreso de Ciencias Informáticas",
+      "issuer": "UTM · IVENTO",
+      "date": "2025-10",
+      "file": "IVENTO_Certificado_Asistente_1781493891203.pdf",
+      "kind": "event"
+    },
+    {
+      "id": "utm-convencion-2024",
+      "title": "VIII Convención Científica Internacional UTM 2024 · VI Congreso de Ciencias Informáticas",
+      "issuer": "UTM · IVENTO",
+      "date": "2024-10",
+      "file": "IVENTO_Certificado_Asistente_1781493903469.pdf",
+      "kind": "event"
+    },
+    {
+      "id": "utm-convencion-2023",
+      "title": "VII Convención Científica Internacional UTM 2023 · VI Congreso de Ingeniería Aplicada",
+      "issuer": "UTM · IVENTO",
+      "date": "2023-10",
+      "file": "IVENTO_Certificado_Asistente_1781493917891.pdf",
+      "kind": "event"
+    }
+  ]
+}
