@@ -11,8 +11,8 @@ export interface Project {
   tags: string[];
   /** Nombre en media-src/projects (sin extensión). */
   image?: string;
+  /** Solo enlaces públicos a la página en vivo. El código de los proyectos es privado. */
   demoUrl?: string;
-  repoUrl?: string;
   status?: 'en producción' | 'en desarrollo' | 'académico';
   featured?: boolean;
 }
@@ -24,8 +24,6 @@ export const categoryLabels: Record<ProjectCategory | 'all', string> = {
   seguridad: 'Seguridad',
   producto: 'Producto',
 };
-
-const GH = 'https://github.com/DavidCevallos15';
 
 export const projects: Project[] = [
   {
@@ -53,18 +51,6 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 'crucidrive',
-    title: 'CruciDrive',
-    summary: 'Despacho hiperlocal de tricimotos en Crucita por proximidad geográfica: menos "vuelteo", más seguridad y trazabilidad.',
-    category: 'sistemas',
-    context: 'Plataforma móvil · Manabí',
-    tags: ['React Native', 'Expo', 'Node.js', 'Socket.io', 'PostGIS'],
-    image: 'crucidrive-icon',
-    repoUrl: `${GH}/Crucidrive---APP`,
-    status: 'en desarrollo',
-    featured: true,
-  },
-  {
     id: 'inforario',
     title: 'Inforario UTM',
     summary: 'App web + extensión Manifest V3 que convierte los PDF de horarios del SGU en un calendario interactivo con Google Calendar.',
@@ -73,18 +59,7 @@ export const projects: Project[] = [
     tags: ['React', 'TypeScript', 'Supabase', 'Manifest V3'],
     image: 'inforario-extension',
     demoUrl: 'https://inforario-ia-null.vercel.app/',
-    repoUrl: `${GH}/inforario-extension`,
     featured: true,
-  },
-  {
-    id: 'jeancar',
-    title: 'JeanCar Connect',
-    summary: 'Gestión de taller mecánico: reservas, catálogo, órdenes y facturación con PDF. Roles cliente/mecánico con RLS.',
-    category: 'sistemas',
-    context: 'Sistema web',
-    tags: ['React', 'TypeScript', 'Supabase', 'RLS', 'Storage'],
-    repoUrl: `${GH}/JeanCarConnect`,
-    status: 'en desarrollo',
   },
   {
     id: 'java-crypto',
@@ -94,7 +69,6 @@ export const projects: Project[] = [
     context: 'Sistemas distribuidos',
     tags: ['Java', 'AES-GCM', 'RSA', 'SHA-256', 'Sockets'],
     image: 'java-crypto-sockets',
-    repoUrl: `${GH}/java-crypto-sockets`,
     status: 'académico',
   },
   {
@@ -105,7 +79,6 @@ export const projects: Project[] = [
     context: 'DevSecOps · Open source',
     tags: ['PowerShell', 'Windows', 'Auditoría'],
     image: 'win-sec-sanitizer',
-    repoUrl: `${GH}/win-sec-sanitizer`,
   },
   {
     id: 'finanzas',
@@ -115,7 +88,6 @@ export const projects: Project[] = [
     context: 'Producto digital',
     tags: ['React', 'TypeScript', 'Tailwind', 'Google Sheets'],
     image: 'finanzas',
-    repoUrl: `${GH}/finanzas`,
   },
   {
     id: 'espacio',
@@ -125,7 +97,6 @@ export const projects: Project[] = [
     context: 'Divulgación · 3D',
     tags: ['Three.js', 'TypeScript', 'Vite', 'Vitest'],
     image: 'semana-mundial-del-espacio',
-    repoUrl: `${GH}/semana-mundial-del-espacio`,
   },
   {
     id: 'enfermero',
@@ -136,7 +107,6 @@ export const projects: Project[] = [
     tags: ['JavaScript', 'Bootstrap', 'Vite'],
     image: 'enfermero',
     demoUrl: 'https://enfermero-jimmy-cevallos.vercel.app/',
-    repoUrl: `${GH}/enfermero-jimmy-cevallos`,
     status: 'en producción',
   },
   {
@@ -148,7 +118,6 @@ export const projects: Project[] = [
     tags: ['Next.js', 'Tailwind', 'Motion'],
     image: 'of-essence',
     demoUrl: 'https://of-essence.vercel.app/',
-    repoUrl: `${GH}/OF-ESSENCE`,
   },
   {
     id: 'bernarda',
