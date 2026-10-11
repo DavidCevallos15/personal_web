@@ -88,7 +88,6 @@ test.describe('reduced motion', () => {
     await page.mouse.wheel(0, 2000);
     await page.waitForTimeout(400);
     await expect(page.getByTestId('smart-cursor')).toHaveCount(0);
-    await expect(page.getByTestId('head-tracker')).toHaveCount(0);
     await expect(page.getByTestId('footer-trail')).toHaveCount(0);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   });

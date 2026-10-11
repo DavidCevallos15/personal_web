@@ -10,7 +10,6 @@ test('cursor nativo en touch; punto y anillo solo con mouse', async ({ page }, i
     await expect(page.getByTestId('smart-cursor')).toHaveCount(0);
     await expect(page.locator('html')).not.toHaveAttribute('data-cursor-on');
     await expect(page.getByTestId('footer-trail')).toHaveCount(0);
-    await expect(page.getByTestId('head-tracker')).toHaveCount(0);
   } else {
     await expect(page.getByTestId('smart-cursor')).toHaveCount(1);
     await page.mouse.move(300, 150);
@@ -33,20 +32,18 @@ test('el cursor vuelve de un input y detecta enlaces agregados con Ver más', as
   await expect(page.locator('.cursor-label')).toHaveText('Ver');
 });
 
-test('el avatar cambia de pose y rayos X requiere mantener pulsado', async ({ page }, info) => {
+test('rayos X: al pasar el mouse la máscara revela la otra cara', async ({ page }, info) => {
   test.skip(info.project.name === 'mobile');
   await page.goto('/');
-  const tracker = page.getByTestId('head-tracker');
-  await expect(tracker).toHaveAttribute('data-frame', '10', { timeout: 10000 });
-  await page.mouse.move(120, 100);
-  await expect(tracker).not.toHaveAttribute('data-frame', '10');
-  const avatar = page.getByRole('button', { name: /Explorar avatar/ });
-  await avatar.hover();
-  await expect(avatar).not.toHaveAttribute('data-xray');
-  await page.mouse.down();
-  await expect(avatar).toHaveAttribute('data-xray', '');
-  await page.mouse.up();
-  await expect(avatar).not.toHaveAttribute('data-xray');
+  await expect(page.getByRole('img', { name: 'David Cevallos' })).toBeVisible();
+  const avatar = page.locator('#hero div.group:has(img[alt="David Cevallos"])');
+  const xray = avatar.locator('> [aria-hidden="true"]');
+  await expect(xray).toHaveCSS('opacity', '0');
+  const box = await avatar.boundingBox();
+  if (!box) throw new Error('avatar sin layout');
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height * 0.25);
+  await expect(xray).toHaveCSS('opacity', '1');
+  await expect.poll(() => avatar.evaluate((el) => el.style.getPropertyValue('--mx'))).not.toBe('-999px');
 });
 
 test('un cambio a movimiento reducido restaura el cursor nativo', async ({ page }, info) => {
@@ -81,23 +78,4 @@ test('footer con proyectos reales y CV disponible', async ({ page, request }, in
     await page.getByTestId('footer-wordmark').hover();
     await expect.poll(() => page.locator('[data-testid="footer-trail"] img').evaluateAll((images) => images.some((image) => image.getAnimations().length > 0))).toBe(true);
   }
-});
-
-test('en touch la cabeza mira hacia el toque y vuelve al centro', async ({ page }, info) => {
-  test.skip(info.project.name !== 'mobile');
-  await page.addInitScript(() => Object.defineProperty(navigator, 'deviceMemory', { value: 8 }));
-  await page.goto('/');
-  await expect(page.getByTestId('head-tracker')).toHaveCount(0);
-  await page.getByRole('button', { name: /Explorar avatar/ }).tap();
-  await expect(page.getByTestId('head-tracker')).toHaveAttribute('data-frame', /^(?!10$)\d+$/, { timeout: 10000 });
-  await expect(page.getByTestId('head-tracker')).toHaveAttribute('data-frame', '10', { timeout: 5000 });
-});
-
-test('un móvil de poca memoria conserva el retrato estático', async ({ page }, info) => {
-  test.skip(info.project.name !== 'mobile');
-  await page.addInitScript(() => Object.defineProperty(navigator, 'deviceMemory', { value: 2 }));
-  await page.goto('/');
-  await page.getByRole('button', { name: /Explorar avatar/ }).tap();
-  await expect(page.getByTestId('head-tracker')).toHaveCount(0);
-  await expect(page.getByRole('img', { name: 'David Cevallos' })).toBeVisible();
 });
