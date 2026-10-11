@@ -47,7 +47,10 @@ test('la galería sirve WebP livianos, no los PNG originales', async ({ page }) 
   await page.waitForTimeout(800);
   const thumbs = page.locator('#art img');
   await expect(thumbs.first()).toHaveAttribute('src', /\/media\/gallery\/.+-thumb\.webp$/);
-  expect(await thumbs.count()).toBe(160);
+  // Pista duplicada para el loop infinito: el doble de las piezas visibles para lectores de pantalla
+  const pieces = await page.getByRole('button', { name: /^Ver arte IA \d+$/ }).count();
+  expect(pieces).toBeGreaterThan(0);
+  expect(await thumbs.count()).toBe(pieces * 2);
   expect(heavy).toEqual([]);
 });
 
