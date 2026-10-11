@@ -136,6 +136,9 @@
 .footer-link { position: relative; text-underline-offset: 4px; }
 .footer-link::after { content: ''; position: absolute; inset: auto 0 -3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 200ms var(--ease-interactive); }
 .footer-link:hover::after, .footer-link:focus-visible::after { transform: scaleX(1); }
+@media (min-width: 640px) {
+  .contact-footer { padding-bottom: 36px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .hero-letter-accent { opacity: 0; }
   .cursor-position, .cursor-stamp { display: none; }

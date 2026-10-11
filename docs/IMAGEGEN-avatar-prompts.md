@@ -25,5 +25,3 @@ The head pivot at neck stays in exactly the same location in all 21 cells. Do no
 ```text
 Create TWO animation frames of the exact attached clay avatar, side by side on a TRUE transparent background. Exactly 2 columns by 1 row, equal portrait cells, no border no gap no labels. Identical face, identity, hair, facial moles, centered head, shirt, thin gold chain and neck tattoo TALENT, torso and lighting in both cells. Cell 1: eyes halfway closed during a natural blink. Cell 2: eyes completely closed during same blink. Neutral CLOSED MOUTH unchanged. ONLY eyelids change; everything else absolutely identical to attached portrait. Frame portrait aspect 237x316, combined canvas 948x632 or same exact 3:2 ratio. Keep full frontal chest up figure and entire head. No smile, no talking, no pose change, no text, no background, no watermark.
 ```
-
-
