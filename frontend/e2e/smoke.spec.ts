@@ -83,11 +83,13 @@ test('el formulario valida antes de enviar', async ({ page }) => {
 
 test.describe('reduced motion', () => {
   test.use({ contextOptions: { reducedMotion: 'reduce' } });
-  test('no renderiza la patita y el hero queda estático', async ({ page }) => {
+  test('no descarga efectos de puntero y el hero queda estático', async ({ page }) => {
     await page.goto('/');
     await page.mouse.wheel(0, 2000);
     await page.waitForTimeout(400);
-    await expect(page.locator('svg filter#paw-clay')).toHaveCount(0);
+    await expect(page.getByTestId('smart-cursor')).toHaveCount(0);
+    await expect(page.getByTestId('head-tracker')).toHaveCount(0);
+    await expect(page.getByTestId('footer-trail')).toHaveCount(0);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   });
 });

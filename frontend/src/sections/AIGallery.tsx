@@ -84,6 +84,7 @@ export function AIGallery() {
 
       <div
         className="cursor-grab touch-pan-y select-none active:cursor-grabbing"
+        data-cursor="Arrastra"
         onPointerEnter={(e) => e.pointerType === 'mouse' && setPaused(true)}
         onPointerLeave={() => { setPaused(false); onPointerUp(); }}
         onFocus={() => setPaused(true)}

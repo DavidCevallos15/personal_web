@@ -1,0 +1,24 @@
+{
+  "cellWidth": 237,
+  "cellHeight": 316,
+  "columns": 7,
+  "rows": 4,
+  "frames": 23,
+  "neutral": 10,
+  "avif": "/media/avatar/head-atlas.avif",
+  "webp": "/media/avatar/head-atlas.webp",
+  "yaw": [
+    -30,
+    -20,
+    -10,
+    0,
+    10,
+    20,
+    30
+  ],
+  "pitch": [
+    -12,
+    0,
+    12
+  ]
+}

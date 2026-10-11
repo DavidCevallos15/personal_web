@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { Reveal, SectionHeading } from '@/components/motion/Reveal';
 import { LiteEmbed } from '@/components/ui/LiteEmbed';
+import { LiteVideo } from '@/components/ui/LiteVideo';
 import { YoutubeIcon } from '@/components/ui/Icons';
 import { avatarVideos, youtube } from '@/data/content';
 import { img } from '@/lib/media';
@@ -81,7 +82,7 @@ export function ContentHub() {
 
           <Reveal delay={0.08} className="lg:col-span-5">
             <h3 className="font-display text-2xl uppercase tracking-wide text-text-primary">Videos con avatar IA</h3>
-            <div role="tablist" aria-label="Videos con avatar IA" className="mt-4 flex gap-2">
+            <div role="tablist" aria-label="Videos con avatar IA" className="mt-4 flex flex-wrap gap-2">
               {avatarVideos.map((v, i) => (
                 <button
                   key={v.id}
@@ -109,7 +110,7 @@ export function ContentHub() {
                 transition={{ duration: 0.22, ease: ease.interactive }}
                 className="mt-4"
               >
-                <LiteEmbed
+                {avatar.local ? <LiteVideo key={avatar.id} src={avatar.local.src} poster={avatar.local.poster} title={avatar.title} /> : <LiteEmbed
                   src={avatar.embed}
                   title={avatar.title}
                   allow="encrypted-media; fullscreen; autoplay"
@@ -119,10 +120,10 @@ export function ContentHub() {
                       <img src={avatarCover.src} alt="" loading="lazy" decoding="async" className="absolute bottom-0 left-1/2 h-[92%] -translate-x-1/2 object-contain" />
                     </span>
                   }
-                />
+                />}
               </motion.div>
             </AnimatePresence>
-            <p className="mt-3 text-sm text-text-muted">Producidos con HeyGen: guion, voz y avatar generados con IA.</p>
+            <p className="mt-3 text-sm text-text-muted">{avatar.production ?? 'Producidos con HeyGen: guion, voz y avatar generados con IA.'}</p>
           </Reveal>
         </div>
       </div>

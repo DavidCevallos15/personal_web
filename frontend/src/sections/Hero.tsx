@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { HeroAvatar } from '@/components/HeroAvatar';
+import { ReactiveName } from '@/components/motion/ReactiveName';
 import { DottedSurface } from '@/components/ui/DottedSurface';
 import { VideoBg } from '@/components/motion/VideoBg';
 import { profile } from '@/data/profile';
@@ -47,6 +48,7 @@ export function Hero() {
       aria-label="Presentación"
       className="relative isolate h-svh min-h-[640px] overflow-hidden bg-obsidian"
     >
+      <ReactiveName />
       {/* Piso de puntos */}
       <DottedSurface className="top-auto bottom-0 h-[62%] opacity-80" />
 
@@ -108,12 +110,13 @@ export function Hero() {
           {profile.displayName.split('').map((letter, i) => (
             <motion.span
               key={i}
-              className="inline-block"
+              className="hero-letter relative inline-block"
               initial={reduce ? false : { y: '105%' }}
               animate={{ y: '0%' }}
               transition={{ duration: 0.9, ease: ease.disclosure, delay: 0.25 + i * 0.05 }}
             >
               {letter}
+              <span className="hero-letter-accent absolute inset-0 text-accent-primary" aria-hidden="true">{letter}</span>
             </motion.span>
           ))}
         </span>

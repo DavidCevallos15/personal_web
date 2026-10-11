@@ -15,7 +15,7 @@
   --bg-card: #161b2a;
   --text-primary: #f4f6fc;
   --text-secondary: #94a3b8;
-  --text-secondary-subtle: #5b6478;
+  --text-secondary-subtle: #939daf;
   --accent-gemini: #e2b65c;
   --accent-gemini-rgb: 226, 182, 92;
   --accent-cyber: #00b4d8;
@@ -29,7 +29,7 @@
   --bg-card: #ffffff;
   --text-primary: #0b0f19;
   --text-secondary: #4f5b70;
-  --text-secondary-subtle: #7e8b9b;
+  --text-secondary-subtle: #596579;
   --accent-gemini: #b8862b;
   --accent-gemini-rgb: 184, 134, 43;
   --accent-cyber: #0077b6;
@@ -83,6 +83,9 @@
 }
 
 @layer base {
+  ::selection { color: #0b0f19; background: var(--accent-gemini); }
+  input, textarea { caret-color: var(--accent-gemini); }
+  html { scrollbar-color: var(--accent-gemini) var(--bg-main); }
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -109,6 +112,35 @@
   }
 }
 
+/* Cursor native remains the default; only a mounted, active leaf hides it. */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html[data-cursor-on]:not([data-cursor-native]), html[data-cursor-on]:not([data-cursor-native]) * { cursor: none !important; }
+}
+.cursor-position { position: absolute; top: 0; left: 0; }
+.cursor-ring { position: absolute; inset: -17px; width: 34px; height: 34px; border: 1px solid color-mix(in srgb, var(--color-text-primary) 50%, transparent); border-radius: 50%; }
+.cursor-dot { position: absolute; left: -3px; top: -3px; width: 6px; height: 6px; background: var(--color-accent-primary); border-radius: 50%; }
+.cursor-label { position: absolute; width: 74px; left: -37px; top: -7px; text-align: center; font-family: var(--font-mono); font-size: 10px; color: #0b0f19; }
+.cursor-paw, .cursor-stamp { width: 38px; height: 38px; color: var(--color-accent-primary); }
+.cursor-paw { position: absolute; left: -19px; top: -19px; filter: drop-shadow(0 2px 2px #0b0f1930); }
+.cursor-stamp { position: absolute; margin: -19px; color: #8a6227; }
+.hero-letter-accent { opacity: var(--near, 0); transition: opacity 600ms var(--ease-disclosure); }
+.hero-letter[style*="--near: 1"] .hero-letter-accent { transition-duration: 120ms; }
+.hero-avatar[data-tracking-ready] > picture { opacity: 0; }
+.hero-avatar:not([data-tracking-ready]) > canvas { opacity: 0; }
+.hero-avatar[data-xray] .avatar-xray { opacity: 1; }
+.contact-footer { background: var(--accent-gemini); color: #0b0f19; }
+.contact-footer :focus-visible { outline-color: #0b0f19; }
+.contact-form { --color-obsidian: #0b0f19; --color-surface: #161b2a; --color-text-primary: #f4f6fc; --color-text-muted: #b7c0d1; --color-text-subtle: #b7c0d1; --color-border: #45516a; --color-accent-primary: #e2b65c; color: #f4f6fc; }
+.contact-form :focus-visible { outline-color: #e2b65c; }
+.footer-wordmark { padding: 28px 0 20px; font-size: clamp(4rem, 24vw, 23rem); }
+.footer-link { position: relative; text-underline-offset: 4px; }
+.footer-link::after { content: ''; position: absolute; inset: auto 0 -3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 200ms var(--ease-interactive); }
+.footer-link:hover::after, .footer-link:focus-visible::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-letter-accent { opacity: 0; }
+  .cursor-position, .cursor-stamp { display: none; }
+}
+
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
@@ -118,12 +150,6 @@
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
     border-bottom: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent);
-  }
-  .gradient-text {
-    background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-electric) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
   /* Tira de "perforaciones" tipo película (detrás del avatar del hero) */
   .film-strip {
