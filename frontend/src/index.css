@@ -125,11 +125,10 @@
 .cursor-stamp { position: absolute; margin: -19px; color: #8a6227; }
 .hero-letter-accent { opacity: var(--near, 0); transition: opacity 600ms var(--ease-disclosure); }
 .hero-letter[style*="--near: 1"] .hero-letter-accent { transition-duration: 120ms; }
-.hero-avatar[data-tracking-ready] > picture { opacity: 0; }
-.hero-avatar:not([data-tracking-ready]) > canvas { opacity: 0; }
-.hero-avatar[data-xray] .avatar-xray { opacity: 1; }
 .contact-footer { background: var(--accent-gemini); color: #0b0f19; }
 .contact-footer :focus-visible { outline-color: #0b0f19; }
+.footer-video { mix-blend-mode: multiply; opacity: .45; filter: grayscale(1) brightness(1.25) contrast(1.4); -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 45%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 60% 55% at 50% 45%, #000 55%, transparent 100%); }
+.footer-video-fade { background: linear-gradient(to bottom, var(--accent-gemini) 0%, transparent 35%, transparent 70%, var(--accent-gemini) 100%); }
 .contact-form { --color-obsidian: #0b0f19; --color-surface: #161b2a; --color-text-primary: #f4f6fc; --color-text-muted: #b7c0d1; --color-text-subtle: #b7c0d1; --color-border: #45516a; --color-accent-primary: #e2b65c; color: #f4f6fc; }
 .contact-form :focus-visible { outline-color: #e2b65c; }
 .footer-wordmark { padding: 28px 0 20px; font-size: clamp(4rem, 24vw, 23rem); }
