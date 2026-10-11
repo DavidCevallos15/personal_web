@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState, type FormEvent } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState, type FormEvent } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowUp, ArrowUpRight, Check, Download, Loader2, Mail, MapPin } from 'lucide-react';
 import { VideoBg } from '@/components/motion/VideoBg';
@@ -7,6 +7,7 @@ import { profile } from '@/data/profile';
 import { useInteractionMode } from '@/lib/interaction';
 import { video } from '@/lib/media';
 import { submitContact, type ContactPayload } from '@/lib/contact';
+import { CONTACT_PREFILL_EVENT } from '@/lib/contactPrefill';
 import { cn } from '@/lib/utils';
 
 const codingLoop = video('coding-loop');
@@ -21,6 +22,20 @@ export function Contact() {
   const { fine, reduced } = useInteractionMode();
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState('');
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+
+  // "Pedir demo" en las plantillas del Studio deja el mensaje escrito y enfoca el nombre.
+  useEffect(() => {
+    const onPrefill = (event: Event) => {
+      const message = (event as CustomEvent<string>).detail;
+      if (!messageRef.current || !message) return;
+      messageRef.current.value = message;
+      window.setTimeout(() => nameRef.current?.focus({ preventScroll: true }), 450);
+    };
+    window.addEventListener(CONTACT_PREFILL_EVENT, onPrefill);
+    return () => window.removeEventListener(CONTACT_PREFILL_EVENT, onPrefill);
+  }, []);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -80,7 +95,7 @@ export function Contact() {
           <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           <div className="grid gap-2">
             <label htmlFor="name" className="text-sm font-medium text-text-primary">Nombre</label>
-            <input id="name" name="name" required minLength={2} autoComplete="name" className={inputClass} placeholder="Tu nombre" />
+            <input ref={nameRef} id="name" name="name" required minLength={2} autoComplete="name" className={inputClass} placeholder="Tu nombre" />
           </div>
           <div className="grid gap-2">
             <label htmlFor="email" className="text-sm font-medium text-text-primary">Email</label>
@@ -88,7 +103,7 @@ export function Contact() {
           </div>
           <div className="grid gap-2">
             <label htmlFor="message" className="text-sm font-medium text-text-primary">Mensaje</label>
-            <textarea id="message" name="message" required minLength={10} rows={5} className={cn(inputClass, 'resize-none')} placeholder="Qué quieres construir, plazos y presupuesto aproximado" />
+            <textarea ref={messageRef} id="message" name="message" required minLength={10} rows={5} className={cn(inputClass, 'resize-none')} placeholder="Qué quieres construir, plazos y presupuesto aproximado" />
           </div>
 
           <button
@@ -119,7 +134,7 @@ export function Contact() {
       </section>
 
       <footer className="container-lg">
-        <div className="flex flex-wrap items-center justify-between gap-6 border-y border-current/20 py-5">
+        <div className="relative z-20 flex flex-wrap items-center justify-between gap-6 border-y border-current/20 py-5">
           <nav aria-label="Enlaces del footer" className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold"><a href="#hero" className="footer-link">Inicio</a><a href="#works" className="footer-link">Proyectos</a><a href="#studio" className="footer-link">Studio</a><a href={profile.socials.youtube} target="_blank" rel="noreferrer" className="footer-link">YouTube</a></nav>
           <a href="#hero" className="footer-link inline-flex items-center gap-2 text-sm">Volver arriba<ArrowUp className="size-4" aria-hidden="true" /></a>
         </div>
