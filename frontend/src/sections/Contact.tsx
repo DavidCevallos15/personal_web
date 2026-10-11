@@ -1,12 +1,15 @@
 import { lazy, Suspense, useState, type FormEvent } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowUp, ArrowUpRight, Check, Download, Loader2, Mail, MapPin } from 'lucide-react';
+import { VideoBg } from '@/components/motion/VideoBg';
 import { GithubIcon, LinkedinIcon, YoutubeIcon } from '@/components/ui/Icons';
 import { profile } from '@/data/profile';
 import { useInteractionMode } from '@/lib/interaction';
+import { video } from '@/lib/media';
 import { submitContact, type ContactPayload } from '@/lib/contact';
 import { cn } from '@/lib/utils';
 
+const codingLoop = video('coding-loop');
 const FooterTrail = lazy(() => import('@/components/motion/FooterTrail'));
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
@@ -43,6 +46,9 @@ export function Contact() {
 
   return (
     <div className="contact-footer relative isolate overflow-hidden" data-cursor-zone="paw">
+      {/* El avatar programando, por debajo del footer (como en v4): multiply sobre el oro, poster siempre visible */}
+      <VideoBg asset={codingLoop} className="footer-video absolute inset-y-0 left-0 -z-10 h-full w-full object-contain object-[50%_38%] md:w-[66%] md:object-[50%_40%]" />
+      <div className="footer-video-fade absolute inset-0 -z-10" aria-hidden="true" />
 
       <section id="contact" aria-labelledby="contact-heading" className="container-lg grid gap-12 py-20 md:grid-cols-2 md:py-24">
         <div>
