@@ -78,7 +78,7 @@ export function Certificates() {
         </div>
 
         <div className="relative flex h-[330px] items-center justify-center sm:h-[400px] lg:col-span-7">
-          <div className="relative aspect-[1.32] w-full max-w-[500px]">
+          <div data-cursor="Arrastra" className="relative aspect-[1.32] w-full max-w-[500px]">
             {deck.map((idx, i) => {
               const depth = deck.length - 1 - i;
               return (

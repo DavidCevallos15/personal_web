@@ -6,7 +6,7 @@
 import { useEffect, useState } from 'react';
 import { MotionConfig } from 'motion/react';
 import { Navbar } from '@/components/layout/Navbar';
-import { CatPaw } from '@/components/motion/CatPaw';
+import { PointerExperience } from '@/components/motion/PointerExperience';
 import { EasterEggs, ReminderWidget } from '@/components/easter/EasterEggs';
 import { StickyTabs } from '@/components/ui/StickyTabs';
 import { Hero } from '@/sections/Hero';
@@ -66,7 +66,7 @@ export default function App() {
         <AIGallery />
       </main>
       <Contact />
-      <CatPaw />
+      <PointerExperience />
       <ReminderWidget />
       <EasterEggs />
     </MotionConfig>

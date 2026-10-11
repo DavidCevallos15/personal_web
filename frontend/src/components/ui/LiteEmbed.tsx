@@ -34,6 +34,7 @@ export function LiteEmbed({ src, title, cover, aspect = '16 / 9', className, all
       ) : (
         <button
           type="button"
+          data-cursor="Play"
           onClick={() => setActive(true)}
           className="group absolute inset-0 flex size-full cursor-pointer items-center justify-center"
           aria-label={`Reproducir: ${title}`}

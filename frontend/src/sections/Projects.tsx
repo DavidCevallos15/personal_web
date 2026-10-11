@@ -94,7 +94,7 @@ function ProjectCard({ project, big }: { project: Project; big: boolean }) {
   const primaryUrl = project.demoUrl ?? project.repoUrl;
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/60 motion-interactive transition-[border-color,transform] hover:-translate-y-1 hover:border-accent-primary/50">
+    <article data-cursor="Ver" className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/60 motion-interactive transition-[border-color,transform] hover:-translate-y-1 hover:border-accent-primary/50">
       <div className={cn('relative overflow-hidden bg-void', big ? 'aspect-[16/8]' : 'aspect-[16/7]')}>
         {shot && !isIcon ? (
           <img

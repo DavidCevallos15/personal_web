@@ -1,0 +1,2 @@
+# Keep PDF cross-reference offsets intact on Windows and Linux.
+*.pdf binary

@@ -1,21 +1,21 @@
-import { useState, type FormEvent } from 'react';
+import { lazy, Suspense, useState, type FormEvent } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ArrowUpRight, Check, Loader2, Mail, MapPin } from 'lucide-react';
-import { VideoBg } from '@/components/motion/VideoBg';
+import { ArrowUp, ArrowUpRight, Check, Download, Loader2, Mail, MapPin } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, YoutubeIcon } from '@/components/ui/Icons';
 import { profile } from '@/data/profile';
-import { video } from '@/lib/media';
+import { useInteractionMode } from '@/lib/interaction';
 import { submitContact, type ContactPayload } from '@/lib/contact';
 import { cn } from '@/lib/utils';
 
-const codingLoop = video('coding-loop');
+const FooterTrail = lazy(() => import('@/components/motion/FooterTrail'));
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
 const inputClass =
   'w-full rounded-xl border border-border bg-obsidian/70 px-4 py-3 text-sm text-text-primary placeholder:text-text-subtle motion-micro transition-[border-color,box-shadow] focus:border-accent-primary focus:outline-none focus:ring-2 focus:ring-accent-primary/30';
 
-/** Contacto real vía Web3Forms (o mailto si no hay access key) + footer con el video de fondo. */
+/** Contacto real y firma DC.dev: oro, proyectos reales y supervisión felina. */
 export function Contact() {
+  const { fine, reduced } = useInteractionMode();
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState('');
 
@@ -42,35 +42,35 @@ export function Contact() {
   };
 
   return (
-    <div className="relative isolate overflow-hidden border-t border-border">
-      <VideoBg asset={codingLoop} className="absolute inset-0 -z-10 size-full object-cover opacity-20" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-obsidian via-obsidian/70 to-obsidian" aria-hidden="true" />
+    <div className="contact-footer relative isolate overflow-hidden" data-cursor-zone="paw">
 
       <section id="contact" aria-labelledby="contact-heading" className="container-lg grid gap-12 py-20 md:grid-cols-2 md:py-24">
         <div>
-          <h2 id="contact-heading" className="font-display text-5xl uppercase leading-[0.95] text-text-primary md:text-7xl">
+          <div className="mb-7 flex items-center gap-4"><img src="/media/avatar/neutral.webp" alt="" width="80" height="107" loading="lazy" className="size-20 rounded-xl bg-[#0b0f19]/10 object-cover object-top" /><span className="text-sm font-medium">David Cevallos<br />Desarrollador Full-Stack</span></div>
+          <h2 id="contact-heading" className="font-display text-5xl uppercase leading-[0.95] md:text-7xl">
             Trabajemos
-            <span className="block text-text-primary/35">juntos</span>
+            <span className="block">juntos</span>
           </h2>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-text-muted text-pretty">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-pretty">
             Webs para negocios, sistemas a medida y mantenimiento. Cuéntame qué necesitas y te respondo por correo.
           </p>
           <ul className="mt-8 space-y-4 font-mono text-sm">
             <li className="flex items-center gap-3">
-              <Mail className="size-4 text-accent-primary" aria-hidden="true" />
-              <a href={`mailto:${profile.email}`} className="text-text-muted hover:text-text-primary">{profile.email}</a>
+              <Mail className="size-4" aria-hidden="true" />
+              <a href={`mailto:${profile.email}`} className="footer-link break-all">{profile.email}</a>
             </li>
-            <li className="flex items-center gap-3 text-text-muted">
-              <MapPin className="size-4 text-accent-primary" aria-hidden="true" />
+            <li className="flex items-center gap-3">
+              <MapPin className="size-4" aria-hidden="true" />
               {profile.location} ({profile.timezone})
             </li>
           </ul>
-          <blockquote className="mt-10 max-w-sm border-l-2 border-accent-primary pl-4 text-sm italic leading-relaxed text-text-muted">
+          <a href="/cv-david-cevallos.pdf" download className="mt-7 inline-flex items-center gap-2 rounded-full border border-current px-5 py-2.5 text-sm font-semibold motion-interactive transition-colors hover:bg-[#0b0f19] hover:text-[#f4f6fc]"><Download className="size-4" aria-hidden="true" />Descargar CV</a>
+          <blockquote className="mt-8 max-w-sm text-sm italic leading-relaxed">
             “No se trata de tener la mejor idea, sino de ejecutar mejor que los demás y no rendirse en el proceso.”
           </blockquote>
         </div>
 
-        <form onSubmit={onSubmit} noValidate={false} aria-label="Formulario de contacto" className="space-y-5 rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur-md md:p-8">
+        <form onSubmit={onSubmit} noValidate={false} aria-label="Formulario de contacto" className="contact-form space-y-5 rounded-2xl bg-surface p-6 md:p-8">
           <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           <div className="grid gap-2">
             <label htmlFor="name" className="text-sm font-medium text-text-primary">Nombre</label>
@@ -112,12 +112,21 @@ export function Contact() {
         </form>
       </section>
 
-      <footer className="container-lg flex flex-col items-center justify-between gap-4 border-t border-border py-8 font-mono text-xs text-text-subtle sm:flex-row">
-        <p>© {new Date().getFullYear()} {profile.name}. Diseñado y desarrollado en Ecuador.</p>
+      <footer className="container-lg">
+        <div className="flex flex-wrap items-center justify-between gap-6 border-y border-current/20 py-5">
+          <nav aria-label="Enlaces del footer" className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold"><a href="#hero" className="footer-link">Inicio</a><a href="#works" className="footer-link">Proyectos</a><a href="#studio" className="footer-link">Studio</a><a href={profile.socials.youtube} target="_blank" rel="noreferrer" className="footer-link">YouTube</a></nav>
+          <a href="#hero" className="footer-link inline-flex items-center gap-2 text-sm">Volver arriba<ArrowUp className="size-4" aria-hidden="true" /></a>
+        </div>
+        <div className="footer-wordmark relative select-none" data-testid="footer-wordmark"><motion.p aria-hidden="true" className="m-0 flex justify-between font-display uppercase leading-none" initial={false} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+          {'DC.DEV'.split('').map((letter, index) => <motion.span key={index} initial={reduced ? false : { opacity: .65, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .6, delay: index * .035, ease: [.16, 1, .3, 1] }}>{letter}</motion.span>)}
+        </motion.p>{fine && !reduced && <Suspense fallback={null}><FooterTrail /></Suspense>}</div>
+        <div className="flex flex-col items-start justify-between gap-4 border-t border-current/20 py-7 text-xs sm:flex-row sm:items-center">
+        <p>© {new Date().getFullYear()} {profile.name}. Hecho en Ecuador.</p>
         <div className="flex items-center gap-4">
-          <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="hover:text-text-primary"><GithubIcon className="size-4" /></a>
-          <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-text-primary"><LinkedinIcon className="size-4" /></a>
-          <a href={profile.socials.youtube} target="_blank" rel="noreferrer" aria-label="YouTube" className="hover:text-text-primary"><YoutubeIcon className="size-4" /></a>
+          <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="footer-link"><GithubIcon className="size-4" /></a>
+          <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="footer-link"><LinkedinIcon className="size-4" /></a>
+          <a href={profile.socials.youtube} target="_blank" rel="noreferrer" aria-label="YouTube" className="footer-link"><YoutubeIcon className="size-4" /></a>
+        </div>
         </div>
       </footer>
     </div>
