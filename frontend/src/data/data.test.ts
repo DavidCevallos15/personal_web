@@ -16,9 +16,13 @@ describe('integridad de contenido', () => {
     for (const t of studioTemplates) expect(exists(img('projects', t.image, 'card').src), t.id).toBe(true);
   });
 
-  it('ids de proyectos únicos y al menos una URL pública por proyecto', () => {
+  it('ids de proyectos únicos y cada proyecto con demo o captura', () => {
     expect(new Set(projects.map((p) => p.id)).size).toBe(projects.length);
-    for (const p of projects) expect(p.demoUrl ?? p.repoUrl ?? p.image, p.id).toBeTruthy();
+    for (const p of projects) expect(p.demoUrl ?? p.image, p.id).toBeTruthy();
+  });
+
+  it('proyectos y plantillas no enlazan a repositorios (código privado)', () => {
+    expect(JSON.stringify({ projects, studioTemplates })).not.toMatch(/github\.com/i);
   });
 
   it('certificaciones: fecha YYYY-MM, ids únicos y archivos/miniaturas existentes', () => {
@@ -31,8 +35,8 @@ describe('integridad de contenido', () => {
     }
   });
 
-  it('galería: 80 piezas con miniatura y full en disco', () => {
-    expect(galleryItems).toHaveLength(80);
+  it('galería: cada pieza tiene miniatura y full en disco (agregar fotos no rompe el test)', () => {
+    expect(galleryItems.length).toBeGreaterThan(0);
     for (const g of galleryItems) {
       expect(exists(g.thumb.src)).toBe(true);
       expect(g.thumb.w).toBeGreaterThan(0);

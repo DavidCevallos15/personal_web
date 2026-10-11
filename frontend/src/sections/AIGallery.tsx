@@ -18,7 +18,8 @@ const ROW_HEIGHT = 340;
 
 /**
  * Marquee arrastrable de arte IA (misma animación de antes, sin el costo):
- * - 1 copia duplicada (160 nodos) en vez de 10 (800 nodos), con wrap infinito.
+ * - 1 copia duplicada (2 nodos por pieza) en vez de 10, con wrap infinito.
+ * - Para agregar piezas: ver docs/GALERIA.md (media-src/gallery + npm run media).
  * - Miniaturas WebP de ~25 KB con width/height reales (sin CLS), lazy + decoding async.
  * - Se detiene fuera de viewport. Clic → lightbox con la versión full.
  */

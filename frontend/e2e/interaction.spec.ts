@@ -59,12 +59,12 @@ test('un cambio a movimiento reducido restaura el cursor nativo', async ({ page 
 
 test('videos locales solo cargan al pulsar Play', async ({ page }) => {
   const sources: string[] = [];
-  page.on('request', (request) => { if (request.url().includes('avatar-motion.mp4')) sources.push(request.url()); });
+  page.on('request', (request) => { if (request.url().includes('jovenes-en-accion.mp4')) sources.push(request.url()); });
   await page.goto('/#content');
-  await expect(page.getByRole('button', { name: /Reproducir: David: estudio/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Reproducir: Jóvenes en acción/ })).toBeVisible();
   expect(sources).toEqual([]);
-  await page.getByRole('button', { name: /Reproducir: David: estudio/ }).click();
-  await expect(page.locator('#content video')).toHaveAttribute('src', '/media/video/avatar-motion.mp4');
+  await page.getByRole('button', { name: /Reproducir: Jóvenes en acción/ }).click();
+  await expect(page.locator('#content video')).toHaveAttribute('src', '/media/video/jovenes-en-accion.mp4');
 });
 
 test('footer con proyectos reales y CV disponible', async ({ page, request }, info) => {
@@ -78,4 +78,33 @@ test('footer con proyectos reales y CV disponible', async ({ page, request }, in
     await page.getByTestId('footer-wordmark').hover();
     await expect.poll(() => page.locator('[data-testid="footer-trail"] img').evaluateAll((images) => images.some((image) => image.getAnimations().length > 0))).toBe(true);
   }
+});
+
+test('plantillas y proyectos no enlazan a GitHub; Pedir demo deja el mensaje en el contacto', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#studio a[href*="github.com"], #works a[href*="github.com"]')).toHaveCount(0);
+  await page.locator('#studio').scrollIntoViewIfNeeded();
+  await page.getByRole('button', { name: 'Pedir demo' }).first().click();
+  await expect(page.locator('#message')).toHaveValue(/plantilla Estudio Axis/);
+  await expect(page.locator('#name')).toBeFocused();
+});
+
+test('las flechas recorren las plantillas sin trackpad', async ({ page }, info) => {
+  test.skip(info.project.name === 'mobile');
+  await page.goto('/');
+  await page.locator('#studio-templates').scrollIntoViewIfNeeded();
+  const list = page.locator('#studio-templates');
+  await expect(page.getByRole('button', { name: 'Plantilla anterior' })).toBeDisabled();
+  await page.getByRole('button', { name: 'Siguiente plantilla' }).click();
+  await expect.poll(() => list.evaluate((el) => el.scrollLeft)).toBeGreaterThan(100);
+  await expect(page.getByRole('button', { name: 'Plantilla anterior' })).toBeEnabled();
+});
+
+test('Volver arriba funciona en pantalla completa de escritorio', async ({ page }, info) => {
+  test.skip(info.project.name === 'mobile');
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/');
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await page.getByRole('link', { name: /Volver arriba/ }).click();
+  await expect.poll(() => page.evaluate(() => window.scrollY), { timeout: 5000 }).toBeLessThan(10);
 });

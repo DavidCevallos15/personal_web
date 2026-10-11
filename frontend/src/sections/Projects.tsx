@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
-import { GithubIcon } from '@/components/ui/Icons';
 import { categoryLabels, projects, type Project, type ProjectCategory } from '@/data/projects';
 import { img } from '@/lib/media';
 import { ease } from '@/lib/motion';
@@ -91,7 +90,7 @@ export function Projects() {
 function ProjectCard({ project, big }: { project: Project; big: boolean }) {
   const shot = project.image ? img('projects', project.image, 'card') : null;
   const isIcon = project.image?.endsWith('-icon');
-  const primaryUrl = project.demoUrl ?? project.repoUrl;
+  const primaryUrl = project.demoUrl;
 
   return (
     <article data-cursor="Ver" className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/60 motion-interactive transition-[border-color,transform] hover:-translate-y-1 hover:border-accent-primary/50">
@@ -143,11 +142,6 @@ function ProjectCard({ project, big }: { project: Project; big: boolean }) {
           {project.demoUrl && (
             <a href={project.demoUrl} target="_blank" rel="noreferrer" aria-label={`Ver ${project.title} en vivo`} className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-text-muted hover:border-accent-primary hover:text-accent-primary">
               En vivo <ArrowUpRight className="size-3.5" aria-hidden="true" />
-            </a>
-          )}
-          {project.repoUrl && (
-            <a href={project.repoUrl} target="_blank" rel="noreferrer" aria-label={`Código de ${project.title} en GitHub`} className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-text-muted hover:border-accent-primary hover:text-accent-primary">
-              <GithubIcon className="size-3.5" /> Código
             </a>
           )}
         </div>

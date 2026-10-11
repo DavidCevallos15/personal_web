@@ -43,7 +43,6 @@ export interface AvatarVideo {
   production?: string;
 }
 export const avatarVideos: AvatarVideo[] = [
-  { id: 'avatar-motion', embed: '/media/video/avatar-motion.mp4', title: 'David: estudio de movimiento del avatar', label: 'Movimiento', local: { src: '/media/video/avatar-motion.mp4', poster: '/media/video/avatar-motion-poster.webp' }, production: 'Estudio de movimiento de mi avatar de plastilina: poses generadas con ImageGen y animadas por capas.' },
   { id: 'jovenes', embed: '/media/video/jovenes-en-accion.mp4', title: 'Jóvenes en acción', label: 'Jóvenes', local: { src: '/media/video/jovenes-en-accion.mp4', poster: '/media/video/jovenes-en-accion-poster.webp' }, production: 'Una pieza narrativa con mi avatar, producida con IA. Dale play para verla con sonido.' },
   { id: 'hg-1', embed: 'https://app.heygen.com/embeds/b4aee93789934050a35f881a3a30c050', title: 'Presentación con avatar IA', label: 'Presentación' },
   { id: 'hg-2', embed: 'https://app.heygen.com/embeds/47998df8222f450ba2ee77ab21569cec', title: 'Contenido con avatar IA', label: 'Contenido' },

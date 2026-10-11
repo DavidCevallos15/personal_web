@@ -125,6 +125,19 @@
 .cursor-stamp { position: absolute; margin: -19px; color: #8a6227; }
 .hero-letter-accent { opacity: var(--near, 0); transition: opacity 600ms var(--ease-disclosure); }
 .hero-letter[style*="--near: 1"] .hero-letter-accent { transition-duration: 120ms; }
+/* Studio: la gata a fondo completo en escritorio (en móvil el video va arriba y el texto debajo).
+   Velo concentrado abajo a la izquierda: deja ver la cabeza de la gata y la laptop. */
+@media (min-width: 768px) {
+  .studio-scrim {
+    background:
+      linear-gradient(to bottom, transparent 50%, color-mix(in oklab, var(--bg-void) 78%, transparent) 74%, var(--bg-void) 100%);
+  }
+  /* Halo pegado al bloque de texto: legible sin tapar la cabeza de la gata */
+  .studio-copy::before {
+    content: ''; position: absolute; inset: -18% -22% -22% -40%; z-index: -1; pointer-events: none;
+    background: radial-gradient(closest-side, color-mix(in oklab, var(--bg-void) 92%, transparent) 0%, color-mix(in oklab, var(--bg-void) 78%, transparent) 60%, transparent 100%);
+  }
+}
 .contact-footer { background: var(--accent-gemini); color: #0b0f19; }
 .contact-footer :focus-visible { outline-color: #0b0f19; }
 .footer-video { mix-blend-mode: multiply; opacity: .45; filter: grayscale(1) brightness(1.25) contrast(1.4); -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 45%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 60% 55% at 50% 45%, #000 55%, transparent 100%); }
@@ -132,6 +145,8 @@
 .contact-form { --color-obsidian: #0b0f19; --color-surface: #161b2a; --color-text-primary: #f4f6fc; --color-text-muted: #b7c0d1; --color-text-subtle: #b7c0d1; --color-border: #45516a; --color-accent-primary: #e2b65c; color: #f4f6fc; }
 .contact-form :focus-visible { outline-color: #e2b65c; }
 .footer-wordmark { padding: 28px 0 20px; font-size: clamp(4rem, 24vw, 23rem); }
+/* Las letras gigantes desbordan su caja hacia arriba: no deben tapar "Volver arriba" */
+.footer-wordmark > p { pointer-events: none; }
 .footer-link { position: relative; text-underline-offset: 4px; }
 .footer-link::after { content: ''; position: absolute; inset: auto 0 -3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 200ms var(--ease-interactive); }
 .footer-link:hover::after, .footer-link:focus-visible::after { transform: scaleX(1); }
