@@ -5,7 +5,8 @@
  * Flujo para actualizar:
  *   1. LinkedIn → Configuración → Privacidad de datos → Obtener una copia de tus datos → "Certificaciones".
  *   2. Reemplaza content/linkedin/Certifications.csv con el nuevo archivo.
- *   3. (Opcional) Copia los PDFs a public/certs/ como diploma-<slug-platzi>.pdf
+ *   3. (Opcional) Copia los PDFs a public/certs/ como diploma-<slug-platzi>.pdf, o la imagen pública
+ *      del diploma (…/curso/<id>-course/diploma-og/og.jpeg) como diploma-<id>-<slug>.jpg
  *   4. npm run certs            → regenera src/data/generated/certifications.json
  *      npm run certs -- --thumbs → además genera miniaturas (requiere pdftoppm / poppler-utils)
  *
@@ -30,12 +31,16 @@ const WANT_THUMBS = process.argv.includes('--thumbs');
  */
 const PDF_BY_COURSE_ID = {
   '12370': 'diploma-growth-ia.pdf',
-  '13728': null, // ChatGPT (sep-2026): diploma-chatgpt.pdf es el curso 12319 (jun-2026)
+  '13728': 'diploma-13728-chatgpt.jpg', // ChatGPT (sep-2026): diploma-chatgpt.pdf es el curso 12319 (jun-2026)
 };
 
+/**
+ * Si no hay PDF, se usa la imagen pública del diploma que publica Platzi
+ * (https://platzi.com/<usuario>/curso/<id>-course/diploma-og/og.jpeg) guardada como diploma-<id>-<slug>.jpg.
+ */
 const findPdf = ({ id, slug }) => {
-  const name = id in PDF_BY_COURSE_ID ? PDF_BY_COURSE_ID[id] : `diploma-${slug}.pdf`;
-  return name && existsSync(path.join(CERTS_DIR, name)) ? name : null;
+  const candidates = id in PDF_BY_COURSE_ID ? [PDF_BY_COURSE_ID[id]] : [`diploma-${slug}.pdf`, `diploma-${id}-${slug}.jpg`];
+  return candidates.find((name) => name && existsSync(path.join(CERTS_DIR, name))) ?? null;
 };
 
 const csv = await readFile(path.join(ROOT, 'content', 'linkedin', 'Certifications.csv'), 'utf8');
