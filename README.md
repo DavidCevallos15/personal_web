@@ -18,7 +18,7 @@ frontend/
 │   └── certs/            ← PDFs de certificados
 ├── scripts/              ← Pipelines: media, certificaciones, YouTube (+ tests)
 ├── src/
-│   ├── sections/         ← Hero, Studio, Projects, Certificates, TechStack, ContentHub, AIGallery, Contact
+│   ├── sections/         ← Hero, Studio, Projects, Certificates, TechStack, Game (Cuntur), ContentHub, AIGallery, Contact
 │   ├── components/       ← motion/ (Reveal, VideoBg, CatPaw), ui/, layout/, easter/
 │   ├── data/             ← profile, projects, studio, content + generated/*.json
 │   └── lib/              ← media (manifest tipado), motion tokens, contact (Web3Forms)
@@ -44,6 +44,7 @@ npm run lint
 |---|---|
 | **Certificaciones** | LinkedIn → Configuración → Privacidad de datos → *Obtener una copia de tus datos* → Certificaciones. Reemplaza `content/linkedin/Certifications.csv`. Para la imagen del certificado copia el PDF a `public/certs/diploma-<slug>.pdf` (slug = parte de la URL de Platzi después del número) y corre `npm run certs`. |
 | **YouTube** | Automático: el `prebuild` lee el RSS de `@DavidCevaZam` en cada deploy. El workflow `refresh-content.yml` redeploya cada lunes si configuras el secret `VERCEL_DEPLOY_HOOK`. |
+| **Cuntur (juego)** | `src/data/game.ts`. El juego vive en su propio repo y deploy (cuntur-ruta-de-los-5-sabores.vercel.app); si cambia la URL, actualiza también `frame-src` en `vercel.json`. |
 | **Proyectos / Studio** | `src/data/projects.ts` y `src/data/studio.ts`. Captura en `media-src/projects/<nombre>.png` y `npm run media`. |
 | **Galería IA / videos / hero** | Original en `media-src/…` y `npm run media` (requiere ffmpeg para videos). |
 

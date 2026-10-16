@@ -94,6 +94,7 @@ export interface SectionLink {
 export const navLinks: SectionLink[] = [
   { id: 'studio', label: 'Studio' },
   { id: 'works', label: 'Proyectos' },
+  { id: 'game', label: 'Juego' },
   { id: 'certificates', label: 'Certificaciones' },
   { id: 'content', label: 'Contenido' },
   { id: 'contact', label: 'Contacto' },

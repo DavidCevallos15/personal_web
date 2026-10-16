@@ -230,3 +230,6 @@
   50% { transform: translateX(3px) rotate(0.5deg); }
 }
 .destroy-shake { animation: shake-destroy 0.3s ease-in-out 2; }
+
+/* Cuntur en pantalla completa: sin bordes redondeados ni marco */
+.game-frame:fullscreen { border: 0; border-radius: 0; }

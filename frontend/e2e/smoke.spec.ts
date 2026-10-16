@@ -25,7 +25,7 @@ test('carga sin errores y el hero presenta a David', async ({ page }) => {
 
 test('todas las secciones existen y el nav las enlaza', async ({ page }) => {
   await page.goto('/');
-  for (const id of ['studio', 'works', 'certificates', 'stack', 'content', 'art', 'contact']) {
+  for (const id of ['studio', 'works', 'certificates', 'stack', 'game', 'content', 'art', 'contact']) {
     await expect(page.locator(`#${id}`)).toHaveCount(1);
   }
 });

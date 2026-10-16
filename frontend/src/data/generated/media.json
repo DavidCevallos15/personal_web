@@ -1578,6 +1578,20 @@
         }
       }
     },
+    "cuntur": {
+      "name": "cuntur",
+      "original": {
+        "w": 960,
+        "h": 540
+      },
+      "variants": {
+        "card": {
+          "src": "/media/projects/cuntur-card.webp",
+          "w": 960,
+          "h": 540
+        }
+      }
+    },
     "dojo-template": {
       "name": "dojo-template",
       "original": {

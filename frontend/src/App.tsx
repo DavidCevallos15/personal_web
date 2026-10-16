@@ -15,6 +15,8 @@ import { Projects } from '@/sections/Projects';
 import { Certificates } from '@/sections/Certificates';
 import { TechStack } from '@/sections/TechStack';
 import { ContentHub } from '@/sections/ContentHub';
+import { Game } from '@/sections/Game';
+import { GamePrompt } from '@/components/ui/GamePrompt';
 import { AIGallery } from '@/sections/AIGallery';
 import { Contact } from '@/sections/Contact';
 
@@ -62,12 +64,14 @@ export default function App() {
             <TechStack />
           </StickyTabs.Item>
         </StickyTabs>
+        <Game />
         <ContentHub />
         <AIGallery />
       </main>
       <Contact />
       <PointerExperience />
       <ReminderWidget />
+      <GamePrompt />
       <EasterEggs />
     </MotionConfig>
   );
