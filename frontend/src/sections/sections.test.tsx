@@ -3,6 +3,8 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { Projects } from './Projects';
 import { Certificates } from './Certificates';
+import { Game } from './Game';
+import { game } from '@/data/game';
 import { projects } from '@/data/projects';
 import { certifications } from '@/data/content';
 
@@ -34,5 +36,16 @@ describe('<Certificates />', () => {
     expect(panel).toHaveTextContent(certifications[1].title);
     await userEvent.click(screen.getByRole('button', { name: /certificado anterior/i }));
     expect(panel).toHaveTextContent(certifications[0].title);
+  });
+});
+
+describe('<Game />', () => {
+  it('no monta el iframe hasta que tocan "Jugar aquí" y entonces carga el juego', async () => {
+    render(<Game />);
+    expect(document.querySelector('iframe')).toBeNull();
+    expect(screen.getByText(game.tribute)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: /jugar cuntur aquí/i }));
+    const frame = await screen.findByTitle(/cuntur/i);
+    expect(frame).toHaveAttribute('src', game.url);
   });
 });

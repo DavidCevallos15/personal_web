@@ -51,6 +51,18 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: 'cuntur',
+    title: 'Cuntur · Ruta de los 5 Sabores',
+    summary: 'Videojuego 2D en honor a mi tierra, Ecuador: un cóndor andino recorre la Costa, Galápagos, la Sierra, los volcanes y la Amazonía buscando su comida típica. Se juega en el celular y en la PC.',
+    category: 'producto',
+    context: 'Videojuego · Hecho en Ecuador',
+    tags: ['Phaser 4', 'TypeScript', 'Vite', 'Pixel art', 'Playwright'],
+    image: 'cuntur',
+    demoUrl: 'https://cuntur-ruta-de-los-5-sabores.vercel.app/',
+    status: 'en desarrollo',
+    featured: true,
+  },
+  {
     id: 'inforario',
     title: 'Inforario UTM',
     summary: 'App web + extensión Manifest V3 que convierte los PDF de horarios del SGU en un calendario interactivo con Google Calendar.',
