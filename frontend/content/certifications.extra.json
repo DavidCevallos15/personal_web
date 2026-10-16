@@ -41,6 +41,16 @@
       "date": "2023-10",
       "file": "IVENTO_Certificado_Asistente_1781493917891.pdf",
       "kind": "event"
+    },
+    {
+      "id": "platzi-ruta-8309-ingles-basico-a1",
+      "title": "Inglés Básico A1",
+      "issuer": "Platzi",
+      "date": "2025-11",
+      "file": "diploma-ruta-8309-ingles-a1.jpg",
+      "kind": "course",
+      "credentialUrl": "https://platzi.com/p/daviiiid_ismyname/ruta/8309-ruta/diploma/detalle/",
+      "credentialId": "0bdc3d07-63a3-4d81-b2d5-f794af23cde8"
     }
   ]
 }
