@@ -6,6 +6,7 @@
 import { useEffect, useState } from 'react';
 import { MotionConfig } from 'motion/react';
 import { Navbar } from '@/components/layout/Navbar';
+import { CookieBanner } from '@/components/layout/CookieBanner';
 import { PointerExperience } from '@/components/motion/PointerExperience';
 import { EasterEggs, ReminderWidget } from '@/components/easter/EasterEggs';
 import { StickyTabs } from '@/components/ui/StickyTabs';
@@ -73,6 +74,7 @@ export default function App() {
       <ReminderWidget />
       <GamePrompt />
       <EasterEggs />
+      <CookieBanner />
     </MotionConfig>
   );
 }

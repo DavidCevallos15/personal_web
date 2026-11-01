@@ -24,13 +24,19 @@
     <!-- Tema antes del primer paint (sin flash). Hash en la CSP de vercel.json. -->
     <script>try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 
-    <!-- Google tag (GTM-TP42PVRG). El script inline está autorizado por hash en la CSP de vercel.json. -->
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TP42PVRG"></script>
+    <!-- Google Tag Manager (GTM-TP42PVRG). Consentimiento antes de cargar GTM; el script inline va autorizado por hash en la CSP de vercel.json. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+        region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']
+      });
+      gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      try{var c=localStorage.getItem('cookie-consent');if(c==='granted'||c==='denied')gtag('consent','update',{analytics_storage:c})}catch(e){}
       gtag('js', new Date());
     </script>
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TP42PVRG"></script>
 
     <!-- LCP: avatar del hero -->
     <link rel="preload" as="image" type="image/avif" href="/media/hero/hover_main-900.avif" imagesrcset="/media/hero/hover_main-600.avif 600w, /media/hero/hover_main-900.avif 900w" imagesizes="(max-width: 768px) 80vw, 560px" fetchpriority="high" />
@@ -55,6 +61,7 @@
     </script>
   </head>
   <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TP42PVRG" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
