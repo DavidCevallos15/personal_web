@@ -8,6 +8,7 @@ import { useInteractionMode } from '@/lib/interaction';
 import { video } from '@/lib/media';
 import { submitContact, type ContactPayload } from '@/lib/contact';
 import { CONTACT_PREFILL_EVENT } from '@/lib/contactPrefill';
+import { openCookiePreferences, track } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 const codingLoop = video('coding-loop');
@@ -51,6 +52,7 @@ export function Contact() {
     };
     const result = await submitContact(payload);
     if (result.ok) {
+      track('generate_lead', { method: result.via });
       setStatus('success');
       form.reset();
     } else {
@@ -78,7 +80,7 @@ export function Contact() {
           <ul className="mt-8 space-y-4 font-mono text-sm">
             <li className="flex items-center gap-3">
               <Mail className="size-4" aria-hidden="true" />
-              <a href={`mailto:${profile.email}`} className="footer-link break-all">{profile.email}</a>
+              <a href={`mailto:${profile.email}`} onClick={() => track('contact_email_click')} className="footer-link break-all">{profile.email}</a>
             </li>
             <li className="flex items-center gap-3">
               <MapPin className="size-4" aria-hidden="true" />
@@ -144,6 +146,7 @@ export function Contact() {
         <div className="flex flex-col items-start justify-between gap-4 border-t border-current/20 py-7 text-xs sm:flex-row sm:items-center">
         <p>© {new Date().getFullYear()} {profile.name}. Hecho en Ecuador.</p>
         <div className="flex items-center gap-4">
+          <button type="button" onClick={openCookiePreferences} className="footer-link cursor-pointer">Cookies</button>
           <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="footer-link"><GithubIcon className="size-4" /></a>
           <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="footer-link"><LinkedinIcon className="size-4" /></a>
           <a href={profile.socials.youtube} target="_blank" rel="noreferrer" aria-label="YouTube" className="footer-link"><YoutubeIcon className="size-4" /></a>
