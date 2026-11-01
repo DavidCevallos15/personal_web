@@ -1,7 +1,7 @@
 # personal_web · David Cevallos
 
 Portafolio de David Cevallos, desarrollador full-stack, y de **DC.dev Studio**.
-Producción: https://davidcevallos.vercel.app
+Producción: https://www.davidcevallos.me
 
 **Stack:** Vite · React 19 · TypeScript · Tailwind CSS v4 · Motion · Vitest · Playwright · Vercel
 

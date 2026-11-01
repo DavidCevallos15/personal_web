@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://davidcevallos.vercel.app/sitemap.xml
+Sitemap: https://www.davidcevallos.me/sitemap.xml
