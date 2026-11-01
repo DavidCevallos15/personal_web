@@ -24,6 +24,14 @@
     <!-- Tema antes del primer paint (sin flash). Hash en la CSP de vercel.json. -->
     <script>try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 
+    <!-- Google tag (GTM-TP42PVRG). El script inline está autorizado por hash en la CSP de vercel.json. -->
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TP42PVRG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+
     <!-- LCP: avatar del hero -->
     <link rel="preload" as="image" type="image/avif" href="/media/hero/hover_main-900.avif" imagesrcset="/media/hero/hover_main-600.avif 600w, /media/hero/hover_main-900.avif 900w" imagesizes="(max-width: 768px) 80vw, 560px" fetchpriority="high" />
 
