@@ -21,7 +21,7 @@ export const profile = {
     linkedin: 'https://www.linkedin.com/in/jimmy-david-cevallos-zambrano-859876191/',
     youtube: 'https://www.youtube.com/@DavidCevaZam',
   },
-  site: 'https://davidcevallos.vercel.app',
+  site: 'https://www.davidcevallos.me',
 } as const;
 
 export const reminderQuotes = [
