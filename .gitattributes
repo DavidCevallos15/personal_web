@@ -1,2 +1,5 @@
+# Finales de línea LF en todos los entornos: el hash de la CSP depende de los bytes exactos de index.html.
 * text=auto eol=lf
+
+# Keep PDF cross-reference offsets intact on Windows and Linux.
 *.pdf binary
