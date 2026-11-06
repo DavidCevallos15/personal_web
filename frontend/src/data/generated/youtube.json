@@ -1,19 +1,83 @@
 {
   "channel": {
-    "id": null,
+    "id": "UC93rBDoh7w_hXHQJ5f1Gv1Q",
     "handle": "@DavidCevaZam",
-    "title": "David Cevallos",
+    "title": "David Cevallos | DevWeb & AI",
     "url": "https://www.youtube.com/@DavidCevaZam"
   },
   "videos": [
     {
-      "id": "kToT4VRtZWw",
-      "title": "Ingeniería de Software Aplicada: Arquitectura del Backend",
-      "published": "",
-      "thumb": "https://i.ytimg.com/vi/kToT4VRtZWw/hqdefault.jpg",
+      "id": "1orT66wpk2Q",
+      "title": "Me hice mi propio launcher para Android TV (y es open source)",
+      "published": "2026-11-04T04:53:43+00:00",
+      "thumb": "https://i.ytimg.com/vi/1orT66wpk2Q/hqdefault.jpg",
       "isShort": false,
-      "views": null
+      "views": 31
+    },
+    {
+      "id": "6YgEWVBRbV8",
+      "title": "Desarrollé la web de un hospital en mi pasantía: demo y arquitectura",
+      "published": "2026-10-27T03:53:03+00:00",
+      "thumb": "https://i.ytimg.com/vi/6YgEWVBRbV8/hqdefault.jpg",
+      "isShort": false,
+      "views": 12
+    },
+    {
+      "id": "W8HJ_QrxU0I",
+      "title": "Creé un Uber de tricimotos para Crucita 🛺 | CruciDrive (demo real)",
+      "published": "2026-10-27T03:47:33+00:00",
+      "thumb": "https://i.ytimg.com/vi/W8HJ_QrxU0I/hqdefault.jpg",
+      "isShort": false,
+      "views": 23
+    },
+    {
+      "id": "xCtQgaEwlVc",
+      "title": "Cuntur, el juego que hice en honor a Ecuador",
+      "published": "2026-10-25T04:53:55+00:00",
+      "thumb": "https://i.ytimg.com/vi/xCtQgaEwlVc/hqdefault.jpg",
+      "isShort": false,
+      "views": 4
+    },
+    {
+      "id": "ttvUUFBJrnA",
+      "title": "Me aceptaron en Jóvenes en Acción y convertí mi Excel en una app con IA",
+      "published": "2026-10-25T04:49:23+00:00",
+      "thumb": "https://i.ytimg.com/vi/ttvUUFBJrnA/hqdefault.jpg",
+      "isShort": false,
+      "views": 15
+    },
+    {
+      "id": "RHTcR1FGJ0w",
+      "title": "Diseñé estas 2 webs: arquitectura y barbería | ¿Cuál eliges?",
+      "published": "2026-10-14T04:14:48+00:00",
+      "thumb": "https://i.ytimg.com/vi/RHTcR1FGJ0w/hqdefault.jpg",
+      "isShort": false,
+      "views": 9
+    },
+    {
+      "id": "wkxtXxLZXGA",
+      "title": "¿Eres de la UTM y tu horario del SGU parece un rompecabezas? https://inforario-ia-null.vercel.app/",
+      "published": "2026-10-10T15:02:29+00:00",
+      "thumb": "https://i.ytimg.com/vi/wkxtXxLZXGA/hqdefault.jpg",
+      "isShort": true,
+      "views": 93
+    },
+    {
+      "id": "K9qmbluj9_k",
+      "title": "Construí una máquina del tiempo espacial con Claude Code",
+      "published": "2026-10-07T05:40:25+00:00",
+      "thumb": "https://i.ytimg.com/vi/K9qmbluj9_k/hqdefault.jpg",
+      "isShort": false,
+      "views": 87
+    },
+    {
+      "id": "ctW_s74vTnQ",
+      "title": "Control de gastos en Google Sheets con dashboard automático",
+      "published": "2026-10-06T02:34:02+00:00",
+      "thumb": "https://i.ytimg.com/vi/ctW_s74vTnQ/hqdefault.jpg",
+      "isShort": false,
+      "views": 59
     }
   ],
-  "updatedAt": null
+  "updatedAt": "2026-11-06T17:17:19.411Z"
 }
