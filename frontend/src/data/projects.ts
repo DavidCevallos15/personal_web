@@ -13,6 +13,8 @@ export interface Project {
   image?: string;
   /** Solo enlaces públicos a la página en vivo. El código de los proyectos es privado. */
   demoUrl?: string;
+  /** Texto del botón de demoUrl; por defecto "En vivo". */
+  demoLabel?: string;
   status?: 'en producción' | 'en desarrollo' | 'académico';
   featured?: boolean;
 }
@@ -60,6 +62,19 @@ export const projects: Project[] = [
     image: 'cuntur',
     demoUrl: 'https://cuntur-ruta-de-los-5-sabores.vercel.app/',
     status: 'en desarrollo',
+    featured: true,
+  },
+  {
+    id: 'david-launcher-tv',
+    title: 'David Launcher TV',
+    summary: 'Pantalla de inicio para Android TV sin anuncios, con fondos personalizables, clima y música, más una app de control remoto para el celular. Se instala en minutos, sin computador.',
+    category: 'producto',
+    context: 'App Android · Open source',
+    tags: ['Kotlin', 'Android TV', 'Google TV', 'GitHub Actions'],
+    image: 'david-launcher-tv',
+    demoUrl: '/david-launcher-tv/',
+    demoLabel: 'Instalar',
+    status: 'en producción',
     featured: true,
   },
   {
