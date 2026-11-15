@@ -1,0 +1,31 @@
+rules_version = '2';
+
+// Comentarios de /david-launcher-tv/ (proyecto Firebase: davidcevallos-web).
+// Moderación: en la consola de Firestore pon hidden = true (lo oculta) o borra el documento.
+// Desplegar: scripts/deploy-firestore-rules.sh
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /launcher_feedback/{id} {
+      // Solo se leen los visibles; la consulta debe filtrar hidden == false.
+      allow read: if resource.data.hidden == false;
+
+      allow create: if validFeedback(request.resource.data);
+      allow update, delete: if false;
+    }
+
+    function optionalText(d, key, max) {
+      return !(key in d) || (d[key] is string && d[key].size() <= max);
+    }
+
+    function validFeedback(d) {
+      return d.keys().hasOnly(['name', 'tv', 'works', 'message', 'createdAt', 'hidden'])
+        && d.keys().hasAll(['works', 'message', 'createdAt', 'hidden'])
+        && d.hidden == false
+        && d.createdAt == request.time
+        && d.works in ['si', 'problemas', 'no']
+        && d.message is string && d.message.size() >= 3 && d.message.size() <= 600
+        && optionalText(d, 'name', 40)
+        && optionalText(d, 'tv', 60);
+    }
+  }
+}
