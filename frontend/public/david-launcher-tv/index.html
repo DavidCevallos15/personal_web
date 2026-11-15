@@ -133,6 +133,44 @@
   .phone p { margin: 0; flex: 1 1 260px; color: var(--muted); }
   .phone b { color: var(--text); }
 
+  /* Comentarios */
+  .fb { display: grid; gap: 20px; }
+  @media (min-width: 880px) { .fb { grid-template-columns: 1fr 1.2fr; align-items: start; } }
+  .fb-title { font-size: clamp(22px, 3vw, 28px); line-height: 1.2; margin: 0 0 18px; letter-spacing: -.01em; }
+  .fb form { display: grid; gap: 14px; }
+  .fb label, .fb legend { display: block; font-weight: 700; font-size: 15px; margin: 0 0 6px; }
+  .fb label small, .fb legend small { color: var(--subtle); font-weight: 400; }
+  .fb input[type=text], .fb textarea { width: 100%; font: inherit; font-size: 16px; color: var(--text); background: var(--code);
+    border: 1px solid var(--line); border-radius: 12px; padding: 11px 14px; }
+  .fb textarea { min-height: 120px; resize: vertical; }
+  .fb input:focus-visible, .fb textarea:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; border-color: transparent; }
+  .fb fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .fb .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .fb .opts label { margin: 0; font-weight: 600; font-size: 15px; cursor: pointer; }
+  .fb .opts input { position: absolute; opacity: 0; pointer-events: none; }
+  .fb .opts span { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--line); color: var(--muted); }
+  .fb .opts input:checked + span { border-color: var(--gold); color: var(--text); background: color-mix(in srgb, var(--gold) 14%, transparent); }
+  .fb .opts input:focus-visible + span { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .fb .row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .fb button { font: inherit; cursor: pointer; }
+  .fb button:disabled { opacity: .6; cursor: progress; }
+  .fb-chars { color: var(--subtle); font-size: 13px; font-family: ui-monospace, Consolas, monospace; }
+  .fb-status { margin: 0; font-size: 15px; min-height: 1.6em; color: var(--muted); }
+  .fb-status[data-kind=ok] { color: var(--green); }
+  .fb-status[data-kind=error] { color: var(--warn); }
+  .fb-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .fb-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; max-height: 640px; overflow-y: auto; }
+  .fb-item { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+  .fb-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 15px; }
+  .fb-tv { color: var(--muted); }
+  .fb-badge { font: 600 12px/1 ui-monospace, Consolas, monospace; letter-spacing: .04em; padding: 5px 9px; border-radius: 999px; border: 1px solid currentColor; }
+  .fb-badge.ok { color: var(--green); } .fb-badge.warn { color: var(--warn); } .fb-badge.no { color: var(--muted); }
+  .fb-time { margin-left: auto; color: var(--subtle); font-size: 13px; }
+  .fb-msg { margin: 8px 0 0; color: var(--muted); font-size: 16px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .fb-empty { margin: 0; color: var(--muted); padding: 18px; border: 1px dashed var(--line); border-radius: 16px; }
+  .fb-count { color: var(--subtle); font-weight: 400; }
+
   footer { margin: 48px 0 0; padding: 26px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
   footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 10px; }
   footer a { color: var(--muted); }
@@ -219,7 +257,7 @@
       </article>
       <article class="note">
         <h3>¿Funciona en mi TV?</h3>
-        <p><b>Probado en un TCL con Google TV.</b> Debería funcionar en cualquier Android TV o Google TV con Android 5 o superior (Sony, Xiaomi, Hisense, Philips, TV box). Si lo pruebas en otra marca, cuéntame cómo te fue.</p>
+        <p><b>Probado en un TCL con Google TV.</b> Debería funcionar en cualquier Android TV o Google TV con Android 5 o superior (Sony, Xiaomi, Hisense, Philips, TV box). Si lo pruebas en otra marca, <a href="#comentarios">cuéntame cómo te fue</a>.</p>
         <p><b>Limitado:</b> Fire TV. <b>No:</b> Samsung (Tizen) ni LG (webOS), porque no ejecutan apps Android.</p>
       </article>
     </div>
@@ -256,6 +294,45 @@ adb shell cmd package set-home-activity dev.davidcevallos.launchertv/.MainActivi
       </div>
       <p><b>¿Estás leyendo esto en el TV?</b> Escanea este código con tu celular para tener los pasos a mano mientras instalas.</p>
     </div>
+
+    <section id="comentarios" aria-labelledby="fb-title">
+      <h2 class="section" id="fb-title">Comentarios <span class="fb-count"></span></h2>
+      <div class="fb">
+        <section class="card" aria-label="Dejar un comentario">
+          <h3 class="fb-title">¿Lo probaste? Cuéntame cómo te fue</h3>
+          <form novalidate>
+            <div class="fb-hp" aria-hidden="true"><label for="fb-web">No llenar</label><input id="fb-web" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+            <fieldset>
+              <legend>¿Te funcionó?</legend>
+              <div class="opts">
+                <label><input type="radio" name="works" value="si"><span>Sí</span></label>
+                <label><input type="radio" name="works" value="problemas"><span>Con problemas</span></label>
+                <label><input type="radio" name="works" value="no"><span>No</span></label>
+              </div>
+            </fieldset>
+            <div>
+              <label for="fb-tv">Tu TV <small>(marca y modelo, opcional)</small></label>
+              <input id="fb-tv" name="tv" type="text" maxlength="60" placeholder="Ej. Xiaomi TV Box S" autocomplete="off">
+            </div>
+            <div>
+              <label for="fb-name">Nombre <small>(opcional)</small></label>
+              <input id="fb-name" name="name" type="text" maxlength="40" autocomplete="nickname">
+            </div>
+            <div>
+              <label for="fb-msg">Comentario</label>
+              <textarea id="fb-msg" name="message" maxlength="600" required placeholder="Qué te gustó, qué falló o qué te gustaría que tenga."></textarea>
+            </div>
+            <div class="row">
+              <button class="btn" type="submit">Publicar comentario</button>
+              <span class="fb-chars" aria-hidden="true">0/600</span>
+            </div>
+            <p class="fb-status" role="status" aria-live="polite"></p>
+            <p class="hint" style="margin:0">Se publica al instante y es público. No pongas datos personales.</p>
+          </form>
+        </section>
+        <ul class="fb-list" aria-label="Comentarios publicados"><li class="fb-empty">Cargando comentarios…</li></ul>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -269,5 +346,6 @@ adb shell cmd package set-home-activity dev.davidcevallos.launchertv/.MainActivi
     </nav>
   </footer>
 </div>
+<script src="/david-launcher-tv/comentarios.js" defer></script>
 </body>
 </html>
