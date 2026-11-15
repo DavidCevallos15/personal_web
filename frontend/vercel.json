@@ -9,6 +9,16 @@
       "has": [{ "type": "host", "value": "davidcevallos.vercel.app" }],
       "destination": "https://www.davidcevallos.me/:path*",
       "permanent": true
+    },
+    {
+      "source": "/:p(tv|david-launcher-tv/tv){/}?",
+      "destination": "https://github.com/DavidCevallos15/david-launcher-tv/releases/latest/download/david-launcher-tv.apk",
+      "permanent": false
+    },
+    {
+      "source": "/:p(cel|david-launcher-tv/cel){/}?",
+      "destination": "https://github.com/DavidCevallos15/david-launcher-tv/releases/latest/download/tv-remote.apk",
+      "permanent": false
     }
   ],
   "headers": [

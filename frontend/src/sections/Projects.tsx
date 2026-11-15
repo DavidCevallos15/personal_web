@@ -140,8 +140,8 @@ function ProjectCard({ project, big }: { project: Project; big: boolean }) {
         </ul>
         <div className="relative z-10 mt-auto flex gap-2 pt-4">
           {project.demoUrl && (
-            <a href={project.demoUrl} target="_blank" rel="noreferrer" aria-label={`Ver ${project.title} en vivo`} className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-text-muted hover:border-accent-primary hover:text-accent-primary">
-              En vivo <ArrowUpRight className="size-3.5" aria-hidden="true" />
+            <a href={project.demoUrl} target="_blank" rel="noreferrer" aria-label={project.demoLabel ? `${project.demoLabel} ${project.title}` : `Ver ${project.title} en vivo`} className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-text-muted hover:border-accent-primary hover:text-accent-primary">
+              {project.demoLabel ?? 'En vivo'} <ArrowUpRight className="size-3.5" aria-hidden="true" />
             </a>
           )}
         </div>

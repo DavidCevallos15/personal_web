@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instalar David Launcher TV · David Cevallos</title>
+<meta name="description" content="Instala David Launcher TV en tu Android TV o Google TV y el control remoto en tu celular. Sin computador, en unos minutos.">
+<link rel="canonical" href="https://www.davidcevallos.me/david-launcher-tv/">
+<meta name="theme-color" content="#0b0f19">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_EC">
+<meta property="og:title" content="Instala David Launcher TV">
+<meta property="og:description" content="Un inicio limpio para tu Android TV y un control remoto en tu celular. Gratis, sin anuncios y open source.">
+<meta property="og:url" content="https://www.davidcevallos.me/david-launcher-tv/">
+<meta property="og:image" content="https://www.davidcevallos.me/david-launcher-tv/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/david-launcher-tv/fonts/anton.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face { font-family: 'Anton'; src: url(/david-launcher-tv/fonts/anton.woff2) format('woff2'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'Bricolage Grotesque'; src: url(/david-launcher-tv/fonts/bricolage.woff2) format('woff2'); font-weight: 200 800; font-display: swap; }
+
+  /* Paleta del portafolio: obsidiana + oro + cian */
+  :root {
+    --bg: #0b0f19; --void: #0f1320; --card: #161b2a; --line: #242c42;
+    --text: #f4f6fc; --muted: #94a3b8; --subtle: #939daf;
+    --gold: #e2b65c; --gold-ink: #0b0f19; --cyan: #00b4d8; --green: #34d399; --warn: #f59e0b;
+    --code: #0f1320;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f4f1ea; --void: #ece7dc; --card: #ffffff; --line: #ddd6c8;
+      --text: #0b0f19; --muted: #4f5b70; --subtle: #596579;
+      --gold: #7d5812; --gold-ink: #ffffff; --cyan: #005f8f; --green: #047857; --warn: #b45309;
+      --code: #ece7dc;
+      color-scheme: light;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 18px/1.6 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; overflow-x: clip; }
+  ::selection { color: #0b0f19; background: var(--gold); }
+  a { color: var(--cyan); text-underline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 0; font-size: 15px; }
+  .topbar a { color: var(--muted); text-decoration: none; }
+  .topbar a:hover { color: var(--gold); }
+  .brand { font-family: 'Anton', Impact, sans-serif; letter-spacing: .02em; font-size: 20px; color: var(--text) !important; }
+
+  /* Hero */
+  .hero { display: grid; gap: 28px; padding: 24px 0 8px; align-items: center; }
+  @media (min-width: 880px) { .hero { grid-template-columns: 1.05fr 1fr; padding-top: 40px; } }
+  .eyebrow { font: 600 13px/1.4 ui-monospace, 'Cascadia Mono', Consolas, monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); margin: 0 0 14px; }
+  h1 { font-family: 'Anton', Impact, sans-serif; font-weight: 400; text-transform: uppercase; line-height: .98;
+    font-size: clamp(44px, 8vw, 84px); letter-spacing: .005em; margin: 0 0 18px; }
+  h1 span { color: var(--gold); }
+  .lead { color: var(--muted); font-size: clamp(18px, 2.2vw, 21px); margin: 0 0 22px; max-width: 34ch; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .chips li { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 14px; color: var(--muted); }
+  .cover { width: 100%; height: auto; border-radius: 20px; border: 1px solid var(--line); display: block; }
+
+  /* Bloque principal: la dirección para el TV */
+  .callout { margin: 36px 0 0; padding: 26px; border-radius: 24px; border: 1px solid color-mix(in srgb, var(--gold) 45%, var(--line));
+    background: radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--gold) 16%, transparent), transparent 60%), var(--card); }
+  .callout p { margin: 0; color: var(--muted); }
+  .bigurl { display: block; margin: 10px 0 8px; font: 700 clamp(20px, 6.2vw, 56px)/1.1 ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    color: var(--text); letter-spacing: -.01em; white-space: nowrap; }
+  @media (max-width: 480px) { .callout { padding: 20px 18px; } }
+  .bigurl b { color: var(--gold); }
+
+  /* Secciones */
+  .grid { display: grid; gap: 20px; margin-top: 20px; }
+  @media (min-width: 880px) { .grid { grid-template-columns: 1.3fr 1fr; } }
+  section.card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 26px; }
+  .step { font: 600 12px/1.4 ui-monospace, Consolas, monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--subtle); margin: 0 0 8px; }
+  h2 { font-size: clamp(22px, 3vw, 28px); line-height: 1.2; margin: 0 0 16px; letter-spacing: -.01em; }
+  ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; }
+  ol.steps > li { counter-increment: s; position: relative; padding: 0 0 18px 48px; }
+  ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%;
+    display: grid; place-items: center; font: 700 15px/1 ui-monospace, Consolas, monospace; color: var(--gold-ink); background: var(--gold); }
+  .hint { display: block; color: var(--muted); font-size: 15px; margin-top: 4px; }
+  .url { display: inline-block; margin: 6px 0 2px; padding: 8px 12px; border-radius: 10px; background: var(--code); border: 1px dashed var(--line);
+    font: 700 18px/1.3 ui-monospace, 'Cascadia Mono', Consolas, monospace; word-break: break-all; }
+  kbd { font: 600 .9em ui-monospace, Consolas, monospace; padding: 1px 7px; border-radius: 6px; background: var(--code); border: 1px solid var(--line); }
+
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 12px 22px; border-radius: 999px; font-weight: 700;
+    text-decoration: none; background: var(--gold); color: var(--gold-ink); border: 2px solid var(--gold);
+    transition: transform .16s cubic-bezier(.3,.08,.18,1), box-shadow .16s cubic-bezier(.3,.08,.18,1); }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px -6px rgba(0, 0, 0, .45); }
+  .btn.alt { background: transparent; color: var(--text); border-color: var(--line); }
+  .btn.alt:hover { border-color: var(--gold); box-shadow: none; }
+  .btn:focus-visible { outline: 4px solid var(--cyan); outline-offset: 3px; }
+
+  .qr { background: #fff; border-radius: 16px; padding: 8px; width: min(230px, 72%); margin: 0 0 18px; }
+  .qr svg { display: block; width: 100%; height: auto; }
+
+  /* Avisos */
+  h2.section { margin: 56px 0 16px; }
+  .notes { display: grid; gap: 14px; }
+  @media (min-width: 760px) { .notes { grid-template-columns: repeat(3, 1fr); } }
+  .note { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; border-top: 3px solid var(--warn); }
+  .note h3 { margin: 0 0 8px; font-size: 18px; line-height: 1.3; }
+  .note p { margin: 0 0 8px; color: var(--muted); font-size: 16px; }
+  .note p:last-child { margin-bottom: 0; }
+
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 18px; margin-top: 14px; }
+  summary { cursor: pointer; padding: 18px 20px; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; color: var(--gold); font: 700 22px/1 ui-monospace, Consolas, monospace; }
+  details[open] summary::after { content: '−'; }
+  details .body { padding: 0 20px 20px; color: var(--muted); font-size: 16px; }
+  details .body p { margin: 0 0 12px; }
+  pre { margin: 0 0 12px; padding: 14px 16px; border-radius: 12px; background: var(--code); border: 1px solid var(--line); color: var(--text);
+    overflow-x: auto; font: 14px/1.6 ui-monospace, 'Cascadia Mono', Consolas, monospace; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 10px; border-bottom: 1px solid var(--line); }
+  th { color: var(--text); font-weight: 700; width: 38%; }
+  td { color: var(--muted); }
+
+  .phone { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; margin-top: 56px; padding: 22px; border-radius: 22px;
+    border: 1px dashed var(--line); background: var(--void); }
+  .phone .qr { width: 132px; margin: 0; padding: 6px; }
+  .phone p { margin: 0; flex: 1 1 260px; color: var(--muted); }
+  .phone b { color: var(--text); }
+
+  footer { margin: 48px 0 0; padding: 26px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 10px; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--gold); }
+
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <a class="brand" href="/">DAVID CEVALLOS</a>
+    <a href="/#proyectos">← Volver al portafolio</a>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Android TV · Google TV</p>
+        <h1>Instala David <span>Launcher TV</span></h1>
+        <p class="lead">Una pantalla de inicio limpia para tu televisor y un control remoto en tu celular. Sin computador, en unos minutos.</p>
+        <ul class="chips" aria-label="Características">
+          <li>Gratis</li><li>Sin anuncios</li><li>Open source</li><li>Sin root</li>
+        </ul>
+      </div>
+      <img class="cover" src="/david-launcher-tv/cover.webp" width="1200" height="600" alt="Ilustración de David Launcher TV en un televisor junto a un celular usado como control remoto">
+    </div>
+
+    <div class="callout" role="note">
+      <p>En el TV, dentro de la app <b>Downloader</b>, escribe:</p>
+      <span class="bigurl">davidcevallos.me/<b>tv</b></span>
+      <p>Sin espacios y sin <kbd>https://</kbd>. Siempre descarga la última versión.</p>
+    </div>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="paso-tv">
+        <p class="step">Paso 1 · En el televisor</p>
+        <h2 id="paso-tv">Instalar en el TV</h2>
+        <ol class="steps">
+          <li>En el TV abre <b>Google Play</b>, busca <b>Downloader</b> (ícono naranja, de AFTVnews) e instálala.</li>
+          <li>Abre <b>Downloader</b>. Si pide acceso a archivos, elige <b>Permitir</b>.</li>
+          <li>En el cuadro de dirección escribe esto y pulsa <kbd>Ir</kbd>:
+            <span class="url">davidcevallos.me/tv</span>
+            <span class="hint">Se descarga directamente <b>david-launcher-tv.apk</b>.</span></li>
+          <li>Pulsa <b>Instalar</b>. La primera vez el TV pide permitir que Downloader instale apps desconocidas: entra a <b>Ajustes</b> desde ese aviso, activa <b>Downloader</b> y vuelve.
+            <span class="hint">Si no aparece el aviso: Ajustes → Seguridad (o Privacidad) → Fuentes desconocidas → Downloader.</span></li>
+          <li>Pulsa <b>Abrir</b>. Downloader te ofrece borrar el APK: ya no lo necesitas, puedes borrarlo.</li>
+        </ol>
+        <p class="hint" style="margin:0 0 14px">Desde ahora abre <b>David Launcher TV</b> en la lista de <b>Apps</b> del televisor.</p>
+        <div class="btns">
+          <a class="btn" href="/david-launcher-tv/tv">Descargar para el TV</a>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="paso-cel">
+        <p class="step">Paso 2 · Opcional, en el celular</p>
+        <h2 id="paso-cel">Control remoto en tu celular</h2>
+        <p style="margin:0 0 12px">Escanea con la cámara de un celular Android 8 o superior:</p>
+        <div class="qr" role="img" aria-label="Código QR que abre davidcevallos.me/cel para descargar TV Remote">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" aria-hidden="true"><path fill="#fff" d="M0 0h33v33h-33z"/><path stroke="#0b0f19" d="M2 2.5h7m3 0h1m1 0h2m2 0h1m1 0h1m3 0h7m-29 1h1m5 0h1m4 0h1m1 0h2m2 0h1m1 0h1m2 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h3m2 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h2m2 0h3m1 0h3m3 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m2 0h1m1 0h4m2 0h1m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-18 1h1m3 0h3m-17 1h1m2 0h1m1 0h1m1 0h1m9 0h4m1 0h2m1 0h1m-27 1h5m2 0h1m7 0h4m3 0h3m2 0h2m-29 1h3m1 0h4m3 0h1m4 0h2m2 0h2m1 0h2m3 0h1m-29 1h1m1 0h3m4 0h1m4 0h1m1 0h4m1 0h1m2 0h2m1 0h2m-26 1h1m2 0h3m1 0h3m1 0h1m2 0h1m1 0h2m2 0h1m1 0h1m2 0h1m-29 1h2m2 0h2m1 0h2m2 0h1m1 0h2m1 0h1m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m-29 1h1m5 0h5m2 0h1m2 0h2m6 0h1m3 0h1m-29 1h3m2 0h1m1 0h3m1 0h2m2 0h1m1 0h1m2 0h1m1 0h2m1 0h1m2 0h1m-29 1h1m1 0h2m2 0h1m4 0h3m4 0h4m-22 1h2m2 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m1 0h1m3 0h1m-23 1h3m2 0h1m4 0h3m1 0h1m3 0h1m3 0h1m-27 1h4m3 0h2m2 0h1m3 0h1m1 0h2m2 0h1m1 0h1m1 0h2m-29 1h3m2 0h3m1 0h1m1 0h1m1 0h5m2 0h6m1 0h2m-21 1h1m2 0h1m3 0h6m3 0h1m1 0h1m1 0h1m-29 1h7m2 0h1m1 0h2m1 0h2m2 0h3m1 0h1m1 0h1m3 0h1m-29 1h1m5 0h1m2 0h1m2 0h4m3 0h2m3 0h2m1 0h1m-28 1h1m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m1 0h1m2 0h6m2 0h1m-28 1h1m1 0h3m1 0h1m2 0h1m2 0h3m3 0h1m4 0h1m3 0h1m-28 1h1m1 0h3m1 0h1m3 0h1m3 0h2m3 0h3m3 0h4m-29 1h1m5 0h1m1 0h1m2 0h3m1 0h4m1 0h1m1 0h2m1 0h1m1 0h2m-29 1h7m2 0h3m1 0h2m2 0h1m1 0h3m2 0h1m2 0h1"/></svg>
+        </div>
+        <ol class="steps">
+          <li>Se descarga <b>tv-remote.apk</b>. Android pide permitir instalar desde el navegador: acepta, instala y abre la app.</li>
+          <li>Con el celular y el TV en la <b>misma Wi-Fi</b>, elige tu TV en la lista.</li>
+          <li>Escribe el <b>código de 6 caracteres</b> que aparece en la pantalla del TV. Solo se hace una vez.</li>
+        </ol>
+        <div class="btns">
+          <a class="btn" href="/david-launcher-tv/cel">Descargar TV Remote</a>
+        </div>
+      </section>
+    </div>
+
+    <h2 class="section">Antes de empezar</h2>
+    <div class="notes">
+      <article class="note">
+        <h3>El botón Home</h3>
+        <p>En muchos televisores, incluidos los TCL, no se puede elegir otro inicio predeterminado sin un computador (ADB).</p>
+        <p>No pasa nada: abre David Launcher TV desde <b>Apps</b>. Si tu TV muestra un selector al pulsar <kbd>Home</kbd>, elige David Launcher TV → <b>Siempre</b>.</p>
+      </article>
+      <article class="note">
+        <h3>¿Tenías la vista previa 0.5.0?</h3>
+        <p>Desinstálala <b>una sola vez</b> antes de instalar la 0.6.0: la firma de la app cambió y Android no deja instalar encima.</p>
+        <p>Al desinstalar se borran tus fondos y ajustes. Después, las actualizaciones se instalan encima sin perder nada.</p>
+      </article>
+      <article class="note">
+        <h3>¿Funciona en mi TV?</h3>
+        <p><b>Sí:</b> Android TV y Google TV (TCL, Sony, Xiaomi, Hisense, Philips, TV box) con Android 5 o superior.</p>
+        <p><b>Limitado:</b> Fire TV. <b>No:</b> Samsung (Tizen) ni LG (webOS), porque no ejecutan apps Android.</p>
+      </article>
+    </div>
+
+    <details>
+      <summary>Problemas frecuentes</summary>
+      <div class="body">
+        <table>
+          <tr><th>Downloader no encuentra la página</th><td>Revisa que escribiste <b>davidcevallos.me/tv</b> sin espacios y que el TV tiene internet. También puedes usar el enlace directo: <a href="https://github.com/DavidCevallos15/david-launcher-tv/releases/latest/download/david-launcher-tv.apk">david-launcher-tv.apk</a>.</td></tr>
+          <tr><th>Dice que no puede instalar apps desconocidas</th><td>Activa <b>Downloader</b> en Ajustes → Seguridad → Fuentes desconocidas (el nombre cambia un poco según la marca).</td></tr>
+          <tr><th>“App no instalada” o conflicto con un paquete</th><td>Ya tienes otra versión firmada distinto (por ejemplo la 0.5.0). Desinstálala desde Ajustes → Apps y vuelve a instalar.</td></tr>
+          <tr><th>Home sigue abriendo el inicio de fábrica</th><td>Tu TV no deja cambiarlo sin ADB. Abre David Launcher TV desde Apps, o mira la opción avanzada de abajo.</td></tr>
+          <tr><th>TV Remote no encuentra el TV</th><td>Celular y TV deben estar en la misma Wi-Fi (no en la red de invitados). Prueba escribir la IP del TV a mano en la app.</td></tr>
+        </table>
+      </div>
+    </details>
+
+    <details>
+      <summary>Avanzado: ponerlo como inicio con ADB</summary>
+      <div class="body">
+        <p>Necesitas un computador con <a href="https://developer.android.com/tools/releases/platform-tools">Android Platform-Tools</a> y la depuración activada en el TV (Ajustes → Información → pulsa varias veces <b>Compilación</b> → Opciones de desarrollador). Cambia la IP por la de tu TV.</p>
+        <pre>adb connect 192.168.1.50:5555
+# Guarda tu inicio actual para poder volver:
+adb shell cmd package resolve-activity --brief -a android.intent.action.MAIN -c android.intent.category.HOME
+# Pon David Launcher TV como inicio:
+adb shell cmd package set-home-activity dev.davidcevallos.launchertv/.MainActivity</pre>
+        <p>Pulsa <kbd>Home</kbd> para comprobarlo. Si tu fabricante lo bloquea, sigue abriéndolo desde Apps. Para volver, repite el último comando con el inicio que guardaste. Más detalles en la <a href="https://github.com/DavidCevallos15/david-launcher-tv/blob/main/docs/INSTALLATION.md">guía completa</a>.</p>
+      </div>
+    </details>
+
+    <div class="phone">
+      <div class="qr" role="img" aria-label="Código QR que abre esta página en el celular">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" aria-hidden="true"><path fill="#fff" d="M0 0h37v37h-37z"/><path stroke="#0b0f19" d="M2 2.5h7m3 0h2m2 0h3m1 0h1m1 0h1m1 0h1m3 0h7m-33 1h1m5 0h1m1 0h5m2 0h1m1 0h1m1 0h1m4 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m2 0h2m2 0h2m3 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m3 0h2m6 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m3 0h1m1 0h2m4 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m2 0h2m1 0h2m4 0h3m2 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m2 0h2m2 0h1m2 0h3m1 0h3m-24 1h1m1 0h4m1 0h5m1 0h4m1 0h2m3 0h3m1 0h2m1 0h1m-28 1h2m3 0h2m4 0h2m1 0h2m2 0h2m4 0h3m-31 1h3m1 0h5m3 0h3m2 0h2m2 0h3m1 0h1m2 0h5m-33 1h2m1 0h1m1 0h1m5 0h1m3 0h3m1 0h2m2 0h3m1 0h1m2 0h3m-33 1h4m1 0h3m1 0h1m1 0h1m1 0h2m2 0h2m1 0h1m3 0h1m1 0h2m-28 1h4m1 0h1m5 0h1m3 0h1m1 0h1m1 0h2m1 0h2m1 0h1m3 0h2m-30 1h4m1 0h3m1 0h3m1 0h1m1 0h2m1 0h3m2 0h1m1 0h3m1 0h1m-30 1h1m7 0h2m5 0h4m3 0h1m1 0h1m1 0h4m1 0h1m-32 1h1m1 0h2m1 0h3m1 0h4m1 0h6m1 0h1m1 0h6m-27 1h1m1 0h1m3 0h4m1 0h4m1 0h2m5 0h1m1 0h1m1 0h1m1 0h1m-33 1h1m1 0h2m2 0h3m1 0h1m1 0h1m1 0h1m4 0h2m1 0h3m2 0h1m1 0h4m-33 1h1m1 0h3m4 0h2m2 0h2m2 0h1m1 0h1m3 0h1m1 0h2m1 0h3m1 0h1m-32 1h1m2 0h5m1 0h3m2 0h1m1 0h1m4 0h1m1 0h1m2 0h1m1 0h1m-30 1h1m3 0h2m5 0h1m1 0h1m1 0h1m3 0h2m1 0h2m3 0h2m1 0h1m-31 1h1m1 0h5m3 0h1m1 0h1m1 0h5m1 0h1m1 0h2m1 0h2m3 0h3m-33 1h1m2 0h1m3 0h2m1 0h1m1 0h5m2 0h2m1 0h2m6 0h3m-33 1h4m1 0h3m2 0h5m2 0h1m1 0h2m2 0h6m2 0h1m-24 1h2m4 0h2m5 0h1m1 0h2m3 0h1m1 0h2m-32 1h7m2 0h1m1 0h2m3 0h4m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m-31 1h1m5 0h1m1 0h3m2 0h1m2 0h1m6 0h2m3 0h5m-33 1h1m1 0h3m1 0h1m1 0h7m1 0h2m1 0h1m2 0h7m2 0h1m-32 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m1 0h1m2 0h2m3 0h2m1 0h1m2 0h1m1 0h1m-33 1h1m1 0h3m1 0h1m5 0h1m1 0h1m2 0h9m1 0h3m1 0h2m-33 1h1m5 0h1m1 0h4m1 0h1m5 0h1m2 0h2m1 0h8m-33 1h7m5 0h1m1 0h1m1 0h4m3 0h2m2 0h2"/></svg>
+      </div>
+      <p><b>¿Estás leyendo esto en el TV?</b> Escanea este código con tu celular para tener los pasos a mano mientras instalas.</p>
+    </div>
+  </main>
+
+  <footer>
+    David Launcher TV es un proyecto personal y open source de David Cevallos, escrito en Kotlin.
+    <nav aria-label="Enlaces del proyecto">
+      <a href="https://www.youtube.com/watch?v=1orT66wpk2Q">Ver el video</a>
+      <a href="https://github.com/DavidCevallos15/david-launcher-tv/blob/main/docs/INSTALLATION.md">Guía detallada</a>
+      <a href="https://github.com/DavidCevallos15/david-launcher-tv/releases">Todas las versiones</a>
+      <a href="https://github.com/DavidCevallos15/david-launcher-tv">Código fuente</a>
+      <a href="/">davidcevallos.me</a>
+    </nav>
+  </footer>
+</div>
+</body>
+</html>

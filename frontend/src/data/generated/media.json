@@ -1592,6 +1592,20 @@
         }
       }
     },
+    "david-launcher-tv": {
+      "name": "david-launcher-tv",
+      "original": {
+        "w": 1774,
+        "h": 887
+      },
+      "variants": {
+        "card": {
+          "src": "/media/projects/david-launcher-tv-card.webp",
+          "w": 960,
+          "h": 480
+        }
+      }
+    },
     "dojo-template": {
       "name": "dojo-template",
       "original": {
