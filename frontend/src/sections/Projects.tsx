@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import { categoryLabels, projects, type Project, type ProjectCategory } from '@/data/projects';
 import { img } from '@/lib/media';
+import { LiteEmbed } from '@/components/ui/LiteEmbed';
 import { ease } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 
@@ -90,12 +91,30 @@ export function Projects() {
 function ProjectCard({ project, big }: { project: Project; big: boolean }) {
   const shot = project.image ? img('projects', project.image, 'card') : null;
   const isIcon = project.image?.endsWith('-icon');
-  const primaryUrl = project.demoUrl;
+  const youtubeId = project.demoUrl?.match(/^https:\/\/youtu\.be\/([\w-]{11})$/)?.[1];
+  // El enlace que cubre la tarjeta no debe interceptar los controles del video.
+  const primaryUrl = youtubeId ? undefined : project.demoUrl;
 
   return (
     <article data-cursor="Ver" className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/60 motion-interactive transition-[border-color,transform] hover:-translate-y-1 hover:border-accent-primary/50">
-      <div className={cn('relative overflow-hidden bg-void', big ? 'aspect-[16/8]' : 'aspect-[16/7]')}>
-        {shot && !isIcon ? (
+      <div className={cn('relative overflow-hidden bg-void', !youtubeId && (big ? 'aspect-[16/8]' : 'aspect-[16/7]'))}>
+        {youtubeId ? (
+          <LiteEmbed
+            src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0`}
+            title={`Demo de ${project.title}`}
+            cover={
+              <img
+                src={`https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width={480}
+                height={360}
+                className="size-full object-cover"
+              />
+            }
+          />
+        ) : shot && !isIcon ? (
           <img
             src={shot.src}
             width={shot.w}
