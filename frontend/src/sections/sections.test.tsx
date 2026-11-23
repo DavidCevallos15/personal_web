@@ -16,6 +16,16 @@ describe('<Projects />', () => {
     expect(screen.getAllByRole('article')).toHaveLength(projects.length);
   });
 
+  it('carga la demo de Círculo al pulsar reproducir', async () => {
+    render(<Projects />);
+    const title = screen.getByRole('heading', { name: 'Círculo' });
+    const card = within(title.closest('article')!);
+    expect(card.queryByTitle('Demo de Círculo')).not.toBeInTheDocument();
+    expect(card.getByRole('link', { name: /ver en youtube/i })).toHaveAttribute('href', 'https://youtu.be/Bxo4Vg8SQes');
+    await userEvent.click(card.getByRole('button', { name: 'Reproducir: Demo de Círculo' }));
+    expect(card.getByTitle('Demo de Círculo')).toHaveAttribute('src', 'https://www.youtube-nocookie.com/embed/Bxo4Vg8SQes?autoplay=1&rel=0');
+  });
+
   it('filtra por categoría', async () => {
     render(<Projects />);
     await userEvent.click(screen.getByRole('tab', { name: 'Seguridad' }));

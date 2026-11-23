@@ -53,6 +53,16 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: 'circulo',
+    title: 'Círculo',
+    summary: 'Compara tus seguidores y seguidos de Instagram en tu computadora. Revisa las conexiones mutuas, protege cuentas y exporta un reporte en HTML o CSV.',
+    category: 'producto',
+    context: 'App local · Redes sociales',
+    tags: ['React', 'TypeScript', 'Python', 'SQLite'],
+    demoUrl: 'https://youtu.be/Bxo4Vg8SQes',
+    demoLabel: 'Ver en YouTube',
+  },
+  {
     id: 'cuntur',
     title: 'Cuntur · Ruta de los 5 Sabores',
     summary: 'Videojuego 2D en honor a mi tierra, Ecuador: un cóndor andino recorre la Costa, Galápagos, la Sierra, los volcanes y la Amazonía buscando su comida típica. Se juega en el celular y en la PC.',
