@@ -22,6 +22,7 @@ describe('<Projects />', () => {
     const card = within(title.closest('article')!);
     expect(card.queryByTitle('Demo de Círculo')).not.toBeInTheDocument();
     expect(card.getByRole('link', { name: /ver en youtube/i })).toHaveAttribute('href', 'https://youtu.be/Bxo4Vg8SQes');
+    expect(card.getByRole('link', { name: /descargar gratis círculo/i })).toHaveAttribute('href', '/circulo/');
     await userEvent.click(card.getByRole('button', { name: 'Reproducir: Demo de Círculo' }));
     expect(card.getByTitle('Demo de Círculo')).toHaveAttribute('src', 'https://www.youtube-nocookie.com/embed/Bxo4Vg8SQes?autoplay=1&rel=0');
   });

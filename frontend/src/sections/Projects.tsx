@@ -91,7 +91,7 @@ export function Projects() {
 function ProjectCard({ project, big }: { project: Project; big: boolean }) {
   const shot = project.image ? img('projects', project.image, 'card') : null;
   const isIcon = project.image?.endsWith('-icon');
-  const youtubeId = project.demoUrl?.match(/^https:\/\/youtu\.be\/([\w-]{11})$/)?.[1];
+  const youtubeId = (project.videoUrl ?? project.demoUrl)?.match(/^https:\/\/youtu\.be\/([\w-]{11})$/)?.[1];
   // El enlace que cubre la tarjeta no debe interceptar los controles del video.
   const primaryUrl = youtubeId ? undefined : project.demoUrl;
 
@@ -161,6 +161,11 @@ function ProjectCard({ project, big }: { project: Project; big: boolean }) {
           {project.demoUrl && (
             <a href={project.demoUrl} target="_blank" rel="noreferrer" aria-label={project.demoLabel ? `${project.demoLabel} ${project.title}` : `Ver ${project.title} en vivo`} className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-text-muted hover:border-accent-primary hover:text-accent-primary">
               {project.demoLabel ?? 'En vivo'} <ArrowUpRight className="size-3.5" aria-hidden="true" />
+            </a>
+          )}
+          {project.videoUrl && project.videoUrl !== project.demoUrl && (
+            <a href={project.videoUrl} target="_blank" rel="noreferrer" aria-label={`Ver en YouTube la demo de ${project.title}`} className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-text-muted hover:border-accent-primary hover:text-accent-primary">
+              Ver en YouTube <ArrowUpRight className="size-3.5" aria-hidden="true" />
             </a>
           )}
         </div>
