@@ -15,6 +15,8 @@ export interface Project {
   demoUrl?: string;
   /** Texto del botón de demoUrl; por defecto "En vivo". */
   demoLabel?: string;
+  /** Video de YouTube (https://youtu.be/ID) que ocupa la portada de la card; se reproduce bajo demanda. */
+  videoUrl?: string;
   status?: 'en producción' | 'en desarrollo' | 'académico';
   featured?: boolean;
 }
@@ -55,12 +57,14 @@ export const projects: Project[] = [
   {
     id: 'circulo',
     title: 'Círculo',
-    summary: 'Compara tus seguidores y seguidos de Instagram en tu computadora. Revisa las conexiones mutuas, protege cuentas y exporta un reporte en HTML o CSV.',
+    summary: 'Descubre quién no te sigue en Instagram, TikTok y Facebook con tu exportación oficial, sin entregar tu contraseña. Protege cuentas, exporta reportes y limpia tu cuenta con límites seguros. Gratis para Windows.',
     category: 'producto',
     context: 'App local · Redes sociales',
-    tags: ['React', 'TypeScript', 'Python', 'SQLite'],
-    demoUrl: 'https://youtu.be/Bxo4Vg8SQes',
-    demoLabel: 'Ver en YouTube',
+    tags: ['React', 'TypeScript', 'Python', 'Playwright', 'SQLite'],
+    videoUrl: 'https://youtu.be/Bxo4Vg8SQes',
+    demoUrl: '/circulo/',
+    demoLabel: 'Descargar gratis',
+    status: 'en producción',
   },
   {
     id: 'cuntur',

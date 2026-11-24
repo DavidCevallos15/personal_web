@@ -1,0 +1,9 @@
+{
+  "version": "0.4.0",
+  "releaseUrl": "https://github.com/DavidCevallos15/circulo-app/releases/tag/v0.4.0",
+  "downloadUrl": "https://github.com/DavidCevallos15/circulo-app/releases/download/v0.4.0/Circulo-0.4.0-win64.zip",
+  "sha256": "e8936a988827a3782e483a1973b0214f0e16c4c99fb52e5e5bd9931d7e505060",
+  "minSupportedVersion": "0.4.0",
+  "publishedAt": "2026-11-23T00:00:00Z",
+  "notes": "Primera versión pública: analizador web privado, app portable para Windows con Chromium incluido, programación multi-red y comprobador de actualizaciones seguro."
+}
